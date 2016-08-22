@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffff00">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="namePassByUser : dateCreation"
+
+        android:id="@+id/namePassByUser"
+        android:background="#ff0000"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nameUsedInLear : "
+        android:layout_below="@+id/namePassByUser"
+        android:id="@+id/nameUsedInLear"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nameUsedInClient : "
+        android:layout_above="@+id/date"
+        android:layout_below="@+id/nameUsedInLear"
+
+        android:id="@+id/nameUsedInClient"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date : "
+        android:layout_above="@+id/client"
+        android:layout_below="@+id/nameUsedInClient"
+
+        android:id="@+id/date"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Client : "
+        android:layout_below="@+id/date"
+        android:id="@+id/client"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Extra : "
+        android:layout_below="@+id/client"
+        android:id="@+id/extra"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Date creation  : "
+        android:layout_below="@+id/extra"
+        android:id="@+id/date_creation"/>
+
+</LinearLayout>
