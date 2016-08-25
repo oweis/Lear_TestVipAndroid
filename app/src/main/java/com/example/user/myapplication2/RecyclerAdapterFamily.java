@@ -4,22 +4,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.user.model.Family;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by user on 16/08/2016.
  */
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
+public class RecyclerAdapterFamily extends RecyclerView.Adapter<RecyclerAdapterFamily.MyViewHolder> {
 
     ArrayList<Family> arrayList = new ArrayList<>();
 
-    public RecyclerAdapter(ArrayList<Family> arrayList){
+    public RecyclerAdapterFamily(ArrayList<Family> arrayList){
         this.arrayList = arrayList;
     }
 
@@ -32,13 +35,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.namePassByUser.setText(arrayList.get(position).getNamePassByUser());
-        holder.nameUsedInLear.setText(arrayList.get(position).getNameUsedInLear());
-        holder.nameUsedInClient.setText(arrayList.get(position).getNameUsedInClient());
-        holder.date.setText(arrayList.get(position).getDate());
-        holder.client.setText(arrayList.get(position).getClient());
-        holder.extra.setText(arrayList.get(position).getExtra());
-        holder.date_creation.setText("date");
+
+        String title = arrayList.get(position).getNamePassByUser();
+
+        holder.namePassByUser.setText(title);
+        holder.nameUsedInLear.setText("Name Used In Lear : " + arrayList.get(position).getNameUsedInLear());
+        holder.nameUsedInClient.setText("Name Used In Client : " +arrayList.get(position).getNameUsedInClient());
+        holder.date.setText("Date : " + arrayList.get(position).getDate());
+        holder.client.setText("Client : " + arrayList.get(position).getClient());
+        holder.buttonIdFamily.setTag(arrayList.get(position).getId());
     }
 
     @Override
@@ -49,17 +54,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView namePassByUser,nameUsedInLear,nameUsedInClient,date,client,extra,date_creation;
+        Button buttonIdFamily;
         public MyViewHolder(View itemView){
             super(itemView);
 
             namePassByUser = (TextView) itemView.findViewById(R.id.namePassByUser);
-            nameUsedInClient = (TextView) itemView.findViewById(R.id.nameUsedInClient);
             nameUsedInLear = (TextView) itemView.findViewById(R.id.nameUsedInLear);
+            nameUsedInClient = (TextView) itemView.findViewById(R.id.nameUsedInClient);
             date = (TextView) itemView.findViewById(R.id.date);
             client = (TextView) itemView.findViewById(R.id.client);
-            extra = (TextView) itemView.findViewById(R.id.extra);
-            date_creation = (TextView) itemView.findViewById(R.id.date_creation);
+            buttonIdFamily = (Button) itemView.findViewById(R.id.buttonIdFamily);
         }
-
     }
+
+
 }

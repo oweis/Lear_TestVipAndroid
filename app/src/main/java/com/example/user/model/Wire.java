@@ -17,20 +17,11 @@ public class Wire{
 	private String pin_B;
 	private String color_B;
 	private String splice_B;
-	private Date date_creation = new Date();
+	private Date date_creation;
 
 
-	public Date getDate_creation() {
-		return date_creation;
-	}
 
-	public void setDate_creation(Date date_creation) {
-		this.date_creation = date_creation;
-	}
-
-	public Wire() {
-		// TODO Auto-generated constructor stub
-	}
+	public Wire() {}
 	
 		public Wire(int id,int idFamily,int idPartNumber, String nameWire, String color, String connector_A,
 			String pin_A, String color_A,String splice_A, String connector_B, String pin_B,
@@ -49,6 +40,15 @@ public class Wire{
 		this.color_B = color_B;
 		this.splice_B = splice_B;
 		}
+
+	public Date getDate_creation() {
+		return date_creation;
+	}
+
+	public void setDate_creation(Date date_creation) {
+		this.date_creation = date_creation;
+	}
+
 
 	public int getIdFamily() {
 		return idFamily;

@@ -1,5 +1,7 @@
 package com.example.user.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Family {
@@ -11,7 +13,7 @@ public class Family {
 	private String date;
 	private String client;
 	private String extra;
-	private Date date_creation = new Date();
+	private Date date_creation;
 
 	public Family(){}
 
@@ -57,6 +59,7 @@ public class Family {
 	public void setDate_creation(Date date_creation) {
 		this.date_creation = date_creation;
 	}
+
 
 	public String getNameUsedInClient() {
 		return nameUsedInClient;

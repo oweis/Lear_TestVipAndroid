@@ -11,7 +11,7 @@ public class PartNumber {
 	private String level;
 	private String date;
 	private String extra;
-	private Date date_creation = new Date();
+	private Date date_creation;
 	
 	
 	public PartNumber() {

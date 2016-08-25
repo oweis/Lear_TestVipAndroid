@@ -3,83 +3,63 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="#EB2B36"
+    android:background="#2980b9"
     android:orientation="vertical"
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/namePassByUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#EB2B36"
-        android:background="#ffffff"
-        android:gravity="right"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:text="namePassByUser : " />
-    <TextView
         android:id="@+id/nameUsedInLear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/namePassByUser"
-        android:text="nameUsedInLear : "
+        android:background="#ffffff"
+        android:padding="2dp"
+        android:gravity="right"
+        android:paddingRight="10dp"
+        android:text="nameUsedInLear"
+        android:textColor="#2980B9" />
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="right"
+        android:tag="id"
         android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/nameUsedInClient"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/date"
         android:layout_below="@+id/nameUsedInLear"
+        android:padding="2dp"
         android:text="nameUsedInClient : "
-
         android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/date"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/client"
         android:layout_below="@+id/nameUsedInClient"
+        android:padding="2dp"
         android:text="Date : "
-
         android:textColor="#ffffff" />
 
     <TextView
-        android:id="@+id/client"
+        android:id="@+id/level"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/date"
-        android:text="Client : "
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:id="@+id/extra"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/client"
-        android:text="Extra : "
-        android:textColor="#ffffff" />
-
-    <TextView
-
-        android:id="@+id/date_creation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/extra"
-        android:text="Date creation  : "
+        android:padding="2dp"
+        android:text="Level : "
         android:textColor="#ffffff" />
 
     <Button
-        android:id="@+id/buttonIdFamily"
+        android:id="@+id/buttonIdPartNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="getIdFamily"
+        android:onClick="getIdPartNumber"
         android:tag="0"
-        android:drawableLeft="@drawable/button_family"
-        android:text="Afficher les part numbers" />
-
+        android:drawableLeft="@drawable/button_partnumber"
+        android:text="Lancer test vip" />
 </LinearLayout>

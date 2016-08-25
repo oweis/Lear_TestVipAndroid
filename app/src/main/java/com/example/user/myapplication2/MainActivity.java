@@ -26,15 +26,19 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     Button button;
     TextView textView,clientTextView,dateTextView;
-    String serveur_url = "http://192.168.5.1/testLear/serveur.php";
-    String family_url =  "http://192.168.5.1/testLear/getFamily.php";
-   // String family_url = "http://192.168.5.1:8080/Lear_API/webapi/familys/search/idFamily/1";
+    String root_url = "http://105.148.170.51/";
+    String root_url_archos =  "http://192.168.43.214/";
+    String root_url_normal = "http://192.168.5.1/";
+    String serveur_url = root_url_archos + "testLear/serveur.php";
+    String family_url =  root_url_archos + "testLear/getFamily.php";
     RequestQueue requestQueue;
     Button buttonFamily,buttonShowFamily;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    //    setTheme(R.style.splashScreenTheme);
         super.onCreate(savedInstanceState);
+      //  setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
 
 
@@ -109,8 +113,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,DisplayList.class));
+                startActivity(new Intent(MainActivity.this,DisplayFamilys.class));
             }
         });
+
     }
 }

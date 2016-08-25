@@ -24,20 +24,18 @@
         android:layout_height="wrap_content"
         android:text="Get Server Data"
         android:id="@+id/bn"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="53dp"
-        android:layout_marginEnd="53dp" />
+        android:layout_above="@+id/clientTextView"
+        android:layout_alignLeft="@+id/buttonShowFamily"
+        android:layout_alignStart="@+id/buttonShowFamily" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Family"
         android:id="@+id/buttonFamily"
-        android:layout_below="@+id/bn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/bn"
+        android:layout_alignRight="@+id/buttonShowFamily"
+        android:layout_alignEnd="@+id/buttonShowFamily" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -64,7 +62,9 @@
         android:layout_height="wrap_content"
         android:text="Show Family"
         android:id="@+id/buttonShowFamily"
-        android:layout_alignTop="@+id/clientTextView"
-        android:layout_toRightOf="@+id/buttonFamily"
-        android:layout_toEndOf="@+id/buttonFamily" />
+        android:layout_above="@+id/buttonFamily"
+        android:layout_centerHorizontal="true" />
+
+
+
 </RelativeLayout>
