@@ -6,11 +6,11 @@ package com.example.user.design;
 public class ColorHandler {
 
     public ColorHandler(){}
+    //TODO create function getColorHex so we can use it to modify background to make testing easier
 
-    public void getColor(String colorName){
+    public void getColorRGB(String colorName){
         int colorRGB;
         switch (colorName){
-            //find hexa equiv and change values then show every wire part with it's color
             case "NULL" : colorRGB = 12303291;
                 break;
             case "W" : colorRGB = 16777215;
@@ -62,6 +62,64 @@ public class ColorHandler {
             default: colorRGB = 0; break;
         }
     }
+
+    public String getColorName(String colorName){
+        String colorCompleteName;
+        switch (colorName){
+            case "NULL" : colorCompleteName = "Null";
+                break;
+            case "W" : colorCompleteName = "White";
+                break;
+            case "Y" : colorCompleteName = "Yellow";
+                break;
+            case "O" : colorCompleteName = "Orange";
+                break;
+            case "R" : colorCompleteName = "Red";
+                break;
+            case "V" : colorCompleteName = "Purple";
+                break;
+            case "L" : colorCompleteName = "Blue";
+                break;
+            case "LG" : colorCompleteName = "Light green";
+                break;
+            case "GR" : colorCompleteName = "Grey";
+                break;
+            case "BR" : colorCompleteName = "Brown";
+                break;
+            case "B" : colorCompleteName = "Black";
+                break;
+            case "P" : colorCompleteName = "Pink";
+                break;
+            case "SB" : colorCompleteName = "Sky Blue";
+                break;
+            case "G" : colorCompleteName = "Green";
+                break;
+            case "BK" : colorCompleteName = "Black1";
+                break;
+            case "WH" : colorCompleteName = "White1";
+                break;
+            case "BN" : colorCompleteName = "Brown1";
+                break;
+            case "GN" : colorCompleteName = "Green1";
+                break;
+            case "VT" : colorCompleteName = "Violet1";
+                break;
+            case "BU" : colorCompleteName = "Blue1";
+                break;
+            case "GY" : colorCompleteName = "Grey1";
+                break;
+            case "RD" : colorCompleteName = "Red1";
+                break;
+            case "OG" : colorCompleteName = "Orange1";
+                break;
+            case "YE" : colorCompleteName = "Yellow1";break;
+            default: colorCompleteName = "Default"; break;
+
+        }
+    return colorCompleteName;
+    }
+
+
 
 
 }

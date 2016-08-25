@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.example.user.model.Family;
@@ -24,6 +25,7 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         idFamily = getIntent().getExtras().getInt("idFamily");
         titleFamily = getIntent().getExtras().getString("titleFamily");

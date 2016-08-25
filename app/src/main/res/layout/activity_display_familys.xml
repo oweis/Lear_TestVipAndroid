@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.user.myapplication2.DisplayFamilys"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:scaleType="fitXY"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="false"

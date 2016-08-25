@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">My Application2</string>
+    <string name="app_name">Lear Test Vip</string>
     <string name="title_activity_family">Family</string>
     <string name="title_activity_display_part_numbers">DisplayPartNumbers</string>
-    <string name="title_activity_display_part_numbers_by_id_family">displayPartNumbersByIdFamily
-    </string>
+    <string name="title_activity_display_part_numbers_by_id_family">displayPartNumbersByIdFamily</string>
 </resources>

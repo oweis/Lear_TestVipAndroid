@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class DisplayWiresByIdPartNumber extends AppCompatActivity {
 
     Wire wire;
-    ArrayList<Wire> arrayListWiresByIdPartNumber = new ArrayList<>();
     ArrayList<Wire> arrayListWires = new ArrayList<>();
     int idPartNumber;
     int position = 0;
@@ -50,14 +49,9 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
 
         textViewStep = (TextView) findViewById(R.id.textViewStep);
 
-        textViewTitleFamily.setText(titleFamily);
-        textViewTitlePartNumber.setText(titlePartNumber);
 
         BackgroundTask backgroundTask = new BackgroundTask(DisplayWiresByIdPartNumber.this);
-        arrayListWiresByIdPartNumber = backgroundTask.getListWiresByIdPartNumber(idPartNumber);
-
-        AdaptWires adaptWires = new AdaptWires(arrayListWiresByIdPartNumber);
-        arrayListWires = adaptWires.updateWiresList();
+        arrayListWires = backgroundTask.getListWiresByIdPartNumber(idPartNumber);
 
 //        showFirstWire();
     }
@@ -118,13 +112,22 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
         return arrayListWires.get(position);
     }
 
+    public void showTitle() {
+        textViewTitleFamily.setText(titleFamily);
+        textViewTitlePartNumber.setText(titlePartNumber);
+    }
+
     public void showValues() {
 
-        showNameWire();
-        showColor();
+        showWireInfos();
         showInfos_A();
         showInfos_B();
 
+    }
+
+    public void showWireInfos(){
+        showNameWire();
+        showColor();
     }
 
     public void showNameWire() {
@@ -157,7 +160,6 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
         splice_A.setText(wire.getSplice_A());
     }
 
-
     public void showPin_A() {
         pin_A.setText(wire.getPin_A());
     }
@@ -173,7 +175,6 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
     public void showSplice_B() {
         splice_B.setText(wire.getSplice_B());
     }
-
 
     public void showPin_B() {
         pin_B.setText(wire.getPin_B());

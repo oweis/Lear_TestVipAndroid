@@ -3,26 +3,36 @@ package com.example.user.logic;
 import com.example.user.model.Wire;
 
 import java.util.ArrayList;
+import java.util.Date;
 
-/**
- * Created by user on 25/08/2016.
- */
 public class AdaptWires {
 
     ArrayList<Wire> wiresList = new ArrayList<>();
     ArrayList<Wire> wiresWithSpliceList;
     ArrayList<Wire> wiresWithSameSpliceList = new ArrayList<>();
     ArrayList<String> namesSpliceList = new ArrayList<>();
-    String connector, color, pin;
+    String connector, color, pin,splice;
 
     public AdaptWires(ArrayList<Wire> wiresList) {
         this.wiresList = wiresList;
         this.wiresWithSpliceList = new ArrayList<>();
     }
+    public AdaptWires(){}
 
+    public ArrayList<Wire> fireSplices(ArrayList<Wire> wires){
+        ArrayList<Wire> newWires = new ArrayList<>();
+
+        for (Wire wire : wires){
+            wire.setSplice_A(" ");
+            wire.setSplice_B(" ");
+            newWires.add(wire);
+        }
+        return newWires;
+    }
     public ArrayList<Wire> updateWiresList() {
 
         wiresWithSpliceList = getWiresWithSplice();
+
 
         removeWiresWithSpliceListFromWiresList();
 
@@ -66,9 +76,9 @@ public class AdaptWires {
         for (Wire wire : wiresList) {
             if (wire.getConnector_A().equals("") || wire.getConnector_B().equals("")) {
                 wires.add(wire);
-                System.out.println(wire.getNameWire());
             }
         }
+        System.out.println("Wires With Splice : "+wires.size());
         return wires;
     }
 
@@ -116,12 +126,14 @@ public class AdaptWires {
         connector = wiresWithSameSpliceList.get(0).getConnector_A();
         color = wiresWithSameSpliceList.get(0).getColor_A();
         pin = wiresWithSameSpliceList.get(0).getPin_A();
+        splice = "";
     }
 
     public void setValuesB(){
         connector = wiresWithSameSpliceList.get(0).getConnector_B();
         color = wiresWithSameSpliceList.get(0).getColor_B();
         pin = wiresWithSameSpliceList.get(0).getPin_B();
+        splice = "";
     }
 
     public void setPartB(Wire wire) {
@@ -129,6 +141,9 @@ public class AdaptWires {
         wire.setConnector_B(connector);
         wire.setColor_B(color);
         wire.setPin_B(pin);
+        wire.setSplice_B(splice);
+        wire.setSplice_A(splice);
+
     }
 
     public void setPartA(Wire wire) {
@@ -136,6 +151,9 @@ public class AdaptWires {
         wire.setConnector_A(connector);
         wire.setColor_A(color);
         wire.setPin_A(pin);
+        wire.setSplice_A(splice);
+        wire.setSplice_B(splice);
+
     }
 
     public boolean assertNameExist(ArrayList<String> nameList, String name) {
@@ -146,4 +164,3 @@ public class AdaptWires {
         return name.equals("");
     }
 }
-
