@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import com.example.user.model.PartNumber;
+import com.example.user.Model.PartNumber;
 
 import java.util.ArrayList;
 

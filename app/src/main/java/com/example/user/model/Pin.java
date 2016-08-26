@@ -1,6 +1,4 @@
-package com.example.user.model;
-
-import java.util.Date;
+package com.example.user.Model;
 
 public class Pin {
 

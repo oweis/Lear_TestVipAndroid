@@ -1,27 +1,29 @@
 package com.example.user.myapplication2;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.Window;
 import android.widget.TextView;
 
-import com.example.user.model.Family;
-import com.example.user.model.PartNumber;
+import com.example.user.Model.Family;
+import com.example.user.Model.PartNumber;
 
 import java.util.ArrayList;
 
 public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
 
+ 
+    static int idFamily;
+    static String titleFamily;
     RecyclerView recyclerViewPartNumbers;
-    RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<PartNumber> arrayListPartNumbersByIdFamily = new ArrayList<>();
-    int idFamily;
-    String titleFamily;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +33,15 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
         titleFamily = getIntent().getExtras().getString("titleFamily");
 
         setContentView(R.layout.activity_display_part_numbers);
+
         recyclerViewPartNumbers = (RecyclerView) findViewById(R.id.recyclerViewPartNumbers);
         layoutManager = new LinearLayoutManager(this);
         recyclerViewPartNumbers.setLayoutManager(layoutManager);
         recyclerViewPartNumbers.setHasFixedSize(true);
-        BackgroundTask backgroundTask = new BackgroundTask(DisplayPartNumbersByIdFamily.this);
-        arrayListPartNumbersByIdFamily = backgroundTask.getListPartNumbersByIdFamily(idFamily);
-        adapter = new RecyclerAdapterPartNumber(arrayListPartNumbersByIdFamily);
-        recyclerViewPartNumbers.setAdapter(adapter);
+
+        PartNumbersTask partNumbersTask = new PartNumbersTask(DisplayPartNumbersByIdFamily.this);
+        partNumbersTask.execute();
+
     }
 
 
@@ -53,4 +56,49 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
         intent.putExtra("titlePartNumber", titlePartNumber);
         startActivity(intent);
     }
+}
+
+    class PartNumbersTask extends AsyncTask<Context, Void, ArrayList<PartNumber> > {
+
+        Context ApplicationContext;
+        Activity mActivity;
+        ProgressDialog progressDialog ;
+        RecyclerView recyclerViewPartNumbers;
+
+        public PartNumbersTask (DisplayPartNumbersByIdFamily activity) {
+            super();
+            mActivity = activity;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            progressDialog = new ProgressDialog(mActivity);
+            progressDialog.setMessage("loading");
+            progressDialog.show();
+      }
+
+        @Override
+        protected void onPostExecute(ArrayList<PartNumber>  result) {
+
+            recyclerViewPartNumbers = (RecyclerView) mActivity.findViewById(R.id.recyclerViewPartNumbers);
+            RecyclerView.Adapter adapter = new RecyclerAdapterPartNumber(result);
+            recyclerViewPartNumbers.setAdapter(adapter);
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
+
+        }
+
+        @Override
+        protected ArrayList<PartNumber> doInBackground(Context... params) {
+
+            BackgroundTask backgroundTask = new BackgroundTask(mActivity);
+            ArrayList<PartNumber> partNumbers = backgroundTask.getListPartNumbersByIdFamily(DisplayPartNumbersByIdFamily.idFamily);
+            return partNumbers;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
 }

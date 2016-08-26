@@ -8,18 +8,15 @@
     import com.android.volley.Response;
     import com.android.volley.VolleyError;
     import com.android.volley.toolbox.JsonArrayRequest;
-    import com.example.user.logic.AdaptWires;
-    import com.example.user.model.Family;
-    import com.example.user.model.Fixture;
-    import com.example.user.model.PartNumber;
-    import com.example.user.model.Wire;
+    import com.example.user.Model.Family;
+    import com.example.user.Model.Fixture;
+    import com.example.user.Model.PartNumber;
+    import com.example.user.Model.Wire;
 
     import org.json.JSONArray;
     import org.json.JSONException;
     import org.json.JSONObject;
 
-    import java.text.ParseException;
-    import java.text.SimpleDateFormat;
     import java.util.ArrayList;
     import java.util.Date;
     import java.util.HashMap;
@@ -46,12 +43,13 @@
         ArrayList<Wire> wires = new ArrayList<>();
         ArrayList<Fixture> arrayListFixture = new ArrayList<>();
 
-
         String json_root_url = "http://192.168.43.214/testLear/";
-       // String json_familys_url = json_root_url + "getFamilys.php";
-       String json_familys_url = "http://192.168.43.214:8080/Lear_API/webapi/familys";
+        String json_familys_url = json_root_url + "getFamilys.php";
+        //String json_familys_url = "http://192.168.43.214:8080/Lear_API/webapi/familys";
 
-        String json_partNumbers_url = json_root_url + "getPartNumbers.php";
+      //  String json_partNumbers_url = json_root_url + "getPartNumbers.php?idFamily=";
+        String json_partNumbers_url = "http://192.168.43.214:8080/Lear_API/webapi/partnumbers/search/idFamily/";
+
         String json_wires_url = json_root_url + "getWires.php";
         String json_fixtures_url = json_root_url + "getFixtures.php";
 
@@ -91,34 +89,34 @@
                                     e.printStackTrace();
                                 }
                             }
-                        System.out.print("t");
-                        }
+//TODO open activity hna ida mal9itlhax xi l3ba b asynctask
+                       }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(context, "Error...", Toast.LENGTH_SHORT);
+                    }
                 }
-            }
-            ) {
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String>  params = new HashMap<String, String>();
-                   // params.put("User-Agent", "Nintendo Gameboy");
-                    params.put("Connection", "Keep-Alive");
-                    params.put("Content-Type", "text/html; charset=UTF-8");
-                    params.put("Keep-Alive", "timeout=5, max=100");
+                ) {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String, String>  params = new HashMap<String, String>();
+                       // params.put("User-Agent", "Nintendo Gameboy");
+                        params.put("Connection", "Keep-Alive");
+                        params.put("Content-Type", "text/html; charset=UTF-8");
+                        params.put("Keep-Alive", "timeout=5, max=100");
 
-                    return params;
-                }
-            };
+                        return params;
+                    }
+                };
             MySingleton.getInstance(context).addToRequestQueue(jsonArrayRequest);
             return arrayListFamily;
         }
 
 
         public ArrayList<PartNumber> getListPartNumbersByIdFamily(int idFamily) {
-            json_partNumbersByIdFamily_url = json_partNumbers_url + "?idFamily=" + idFamily;
-            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.POST, json_partNumbersByIdFamily_url, (String) null,
+            json_partNumbersByIdFamily_url = json_partNumbers_url + idFamily;
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, json_partNumbersByIdFamily_url, (String) null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {

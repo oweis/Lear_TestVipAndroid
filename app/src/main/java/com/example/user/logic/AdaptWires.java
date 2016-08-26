@@ -1,9 +1,8 @@
-package com.example.user.logic;
+package com.example.user.Logic;
 
-import com.example.user.model.Wire;
+import com.example.user.Model.Wire;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class AdaptWires {
 

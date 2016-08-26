@@ -6,8 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.logic.AdaptWires;
-import com.example.user.model.Wire;
+import com.example.user.Model.Wire;
 
 import java.util.ArrayList;
 
