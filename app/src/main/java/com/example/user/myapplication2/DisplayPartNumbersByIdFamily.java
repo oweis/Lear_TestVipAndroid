@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
 
- 
     static int idFamily;
     static String titleFamily;
     RecyclerView recyclerViewPartNumbers;
@@ -44,16 +43,17 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
 
     }
 
-
     public void getIdPartNumber(View v) {
 
         int idPartNumber = Integer.parseInt(v.getTag().toString());
         TextView nameUsedInLearTextView = (TextView) findViewById(R.id.nameUsedInLear);
         String titlePartNumber = nameUsedInLearTextView.getText().toString();
-        Intent intent = new Intent(DisplayPartNumbersByIdFamily.this, DisplayWiresByIdPartNumber.class);
+        //Intent intent = new Intent(DisplayPartNumbersByIdFamily.this, DisplayWiresByIdPartNumber.class);
+        Intent intent = new Intent(DisplayPartNumbersByIdFamily.this, DisplayFixturesByIdPartNumber.class);
         intent.putExtra("idPartNumber", idPartNumber);
         intent.putExtra("titleFamily", titleFamily);
         intent.putExtra("titlePartNumber", titlePartNumber);
+        intent.putExtra("idFamily",idFamily);
         startActivity(intent);
     }
 }
@@ -65,16 +65,16 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
         ProgressDialog progressDialog ;
         RecyclerView recyclerViewPartNumbers;
 
-        public PartNumbersTask (DisplayPartNumbersByIdFamily activity) {
+        public PartNumbersTask (DisplayPartNumbersByIdFamily displayPartNumbersByIdFamily) {
             super();
-            mActivity = activity;
+            mActivity = displayPartNumbersByIdFamily;
         }
 
         @Override
         protected void onPreExecute() {
 
             progressDialog = new ProgressDialog(mActivity);
-            progressDialog.setMessage("loading");
+            progressDialog.setMessage("Loading part numbers");
             progressDialog.show();
       }
 

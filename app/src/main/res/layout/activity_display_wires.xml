@@ -47,7 +47,7 @@
             android:layout_gravity="fill"
             android:layout_row="0"
             android:layout_rowWeight="1"
-            android:background="#ba0807">
+            android:background="#16a085">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,7 +57,9 @@
                 android:layout_gravity="fill"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
-                android:text="Wire Name : "
+                android:text="nom : "
+                android:paddingLeft="20dp"
+                android:textColor="#ffffff"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -69,7 +71,9 @@
                 android:layout_gravity="fill"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
-                android:text="nameWire"
+                android:text="nom de fil"
+                android:paddingLeft="20dp"
+                android:textColor="#ffffff"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -80,7 +84,9 @@
                 android:layout_gravity="fill"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
-                android:text="Color : "
+                android:text="Couleur : "
+                android:paddingLeft="20dp"
+                android:textColor="#ffffff"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -91,10 +97,14 @@
                 android:layout_columnWeight="3"
                 android:layout_gravity="fill"
                 android:layout_row="1"
+                android:paddingLeft="20dp"
+                android:textColor="#ffffff"
                 android:layout_rowWeight="1"
-                android:text="color"
+                android:text="couleur"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </GridLayout>
+
+
 
         <GridLayout
             android:layout_column="0"
@@ -103,17 +113,18 @@
             android:layout_row="1"
             android:layout_rowWeight="10">
 
+
+
             <TextView
-                android:id="@+id/color_A"
+                android:id="@+id/connector_A"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/color"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:layout_row="0"
+                android:layout_row="1"
                 android:layout_rowWeight="1"
-                android:text="color_A"
+                android:text="connector_A"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -123,47 +134,35 @@
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:layout_row="1"
+                android:layout_row="2"
                 android:layout_rowWeight="1"
                 android:text="pin_A"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
             <TextView
-                android:id="@+id/splice_A"
+                android:id="@+id/color_A"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_row="2"
-                android:layout_rowWeight="1"
-                android:text="splice_A"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/connector_A"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_below="@+id/color"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
                 android:layout_row="3"
                 android:layout_rowWeight="1"
-                android:text="connector_A"
+                android:text="color_A"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
-
             <TextView
-                android:id="@+id/color_B"
+                android:id="@+id/connector_B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:layout_row="0"
+                android:layout_row="1"
                 android:layout_rowWeight="1"
-                android:text="color_B"
+                android:text="connector_B"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
 
             <TextView
                 android:id="@+id/pin_B"
@@ -172,25 +171,12 @@
                 android:layout_column="1"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
-                android:layout_row="1"
+                android:layout_row="2"
                 android:layout_rowWeight="1"
                 android:text="pin_B"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
             <TextView
-                android:id="@+id/splice_B"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="fill"
-                android:layout_row="2"
-                android:layout_rowWeight="1"
-                android:text="splice_B"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/connector_B"
+                android:id="@+id/color_B"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
@@ -198,8 +184,10 @@
                 android:layout_gravity="fill"
                 android:layout_row="3"
                 android:layout_rowWeight="1"
-                android:text="connector_B"
+                android:text="color_B"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
         </GridLayout>
 
         <GridLayout
@@ -211,7 +199,7 @@
 
 
             <ImageButton
-                android:id="@+id/buttonPrecedent"
+                android:id="@+id/buttonPrecedentWire"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -221,10 +209,10 @@
                 android:layout_rowWeight="1"
                 android:background="#ffffff"
                 android:onClick="showPrecedentWire"
-                android:src="@drawable/decline" />
+                android:src="@drawable/left" />
 
             <ImageButton
-                android:id="@+id/buttonNext"
+                android:id="@+id/buttonNextWire"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -235,7 +223,7 @@
                 android:layout_rowWeight="1"
                 android:background="#ffffff"
                 android:onClick="showNextWire"
-                android:src="@drawable/accept" />
+                android:src="@drawable/right" />
 
 
         </GridLayout>
@@ -255,7 +243,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:gravity="center"
-                android:text="1/60"
+                android:text="numero de fil / nombre des fils "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </GridLayout>
     </GridLayout>

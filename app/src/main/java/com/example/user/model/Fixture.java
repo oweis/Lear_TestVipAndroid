@@ -6,11 +6,7 @@ public class Fixture {
 	private int idFamily;
 	private String nameFixture;
 	private String drawing;
-	
-	public Fixture() {
-		
-	}
-	
+
 	public Fixture(int id,int idFamily, String nameFixture, String drawing) {
 		this.id = id;
 		this.idFamily = idFamily;

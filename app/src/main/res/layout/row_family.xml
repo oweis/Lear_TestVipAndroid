@@ -77,7 +77,7 @@
         android:id="@+id/buttonIdFamily"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="getIdFamily"
+        android:onClick="sendIdFamily"
         android:tag="0"
         android:drawableLeft="@drawable/button_family"
         android:text="Afficher les part numbers" />

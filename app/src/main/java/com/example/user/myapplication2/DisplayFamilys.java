@@ -1,5 +1,6 @@
 package com.example.user.myapplication2;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,38 +14,32 @@ import android.widget.TextView;
 
 //import com.example.user.AsyncTask.FamilysTask;
 import com.example.user.Model.Family;
+import com.example.user.Model.PartNumber;
 
 import java.util.ArrayList;
 
 public class DisplayFamilys extends AppCompatActivity {
 
-    static RecyclerView recyclerViewFamilys;
-    static RecyclerView.Adapter adapter;
+    RecyclerView recyclerViewFamilys;
     RecyclerView.LayoutManager layoutManager;
-    ArrayList<Family> arrayListFamily = new ArrayList<>();
-    ProgressDialog pDialog;
-    static BackgroundTask backgroundTask;
-    static ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_familys);
+
         recyclerViewFamilys = (RecyclerView) findViewById(R.id.recyclerViewFamilys);
-         progressDialog = new ProgressDialog(this);
-
-
         layoutManager = new LinearLayoutManager(this);
         recyclerViewFamilys.setLayoutManager(layoutManager);
         recyclerViewFamilys.setHasFixedSize(true);
 
-        backgroundTask = new BackgroundTask(DisplayFamilys.this);
-        FamilysTask familysTask = new FamilysTask();
+        FamilysTask familysTask = new FamilysTask(DisplayFamilys.this);
         familysTask.execute();
 
     }
 
-    public void getIdFamily(View v) {
+    public void sendIdFamily(View v) {
 
         int idFamily = Integer.parseInt(v.getTag().toString());
         TextView namePassByUserTextView = (TextView) findViewById(R.id.namePassByUser);
@@ -58,32 +53,45 @@ public class DisplayFamilys extends AppCompatActivity {
 
 }
 
-    class FamilysTask extends AsyncTask<String, Void, ArrayList<Family> > {
+class FamilysTask extends AsyncTask<Context, Void, ArrayList<Family>> {
 
-        @Override
-        protected ArrayList<Family> doInBackground(String... params) {
-            ArrayList<Family> familys =  DisplayFamilys.backgroundTask.getListFamilys();
-            return familys;
+    Context ApplicationContext;
+    Activity mActivity;
+    ProgressDialog progressDialog;
+    RecyclerView recyclerViewFamilys;
+
+    public FamilysTask(DisplayFamilys displayFamilys) {
+        super();
+        mActivity = displayFamilys;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        progressDialog = new ProgressDialog(mActivity);
+        progressDialog.setMessage("loading");
+        progressDialog.show();
+    }
+
+    @Override
+    protected void onPostExecute(ArrayList<Family> result) {
+
+        recyclerViewFamilys = (RecyclerView) mActivity.findViewById(R.id.recyclerViewFamilys);
+        RecyclerView.Adapter adapter = new RecyclerAdapterFamily(result);
+        recyclerViewFamilys.setAdapter(adapter);
+        if (progressDialog != null) {
+            progressDialog.dismiss();
         }
-
-        @Override
-        protected void onPostExecute(ArrayList<Family>  result) {
-            DisplayFamilys.progressDialog.dismiss();
-            DisplayFamilys.adapter = new RecyclerAdapterFamily(result);
-            DisplayFamilys.recyclerViewFamilys.setAdapter(DisplayFamilys.adapter);
-        }
-
-        @Override
-        protected void onPreExecute() {
-
-            DisplayFamilys.progressDialog.setMessage("Sber :)");
-        //    DisplayFamilys.progressDialog.setIndeterminate(true);
-            DisplayFamilys.progressDialog.show();
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-        }
-
 
     }
+
+    @Override
+    protected ArrayList<Family> doInBackground(Context... params) {
+        BackgroundTask backgroundTask = new BackgroundTask(mActivity);
+        ArrayList<Family> familys = backgroundTask.getListFamilys();
+        return familys;
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+    }
+}

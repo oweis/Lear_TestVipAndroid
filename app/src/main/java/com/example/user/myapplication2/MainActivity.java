@@ -25,22 +25,22 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
-    TextView textView,clientTextView,dateTextView;
-    String root_url = "http://105.148.170.51/";
-    String root_url_archos =  "http://192.168.43.214/";
+    TextView textView, clientTextView, dateTextView;
+   //String root_url_archos = "http://192.168.5.1/";
+    String root_url_archos = "http://10.0.2.2/";
+
     String root_url_normal = "http://192.168.5.1/";
     String serveur_url = root_url_archos + "testLear/serveur.php";
-    String family_url =  root_url_archos + "testLear/getFamily.php";
+    String family_url = root_url_archos + "testLear/getFamily.php";
     RequestQueue requestQueue;
-    Button buttonFamily,buttonShowFamily;
+    Button buttonFamily, buttonShowFamily;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    //    setTheme(R.style.splashScreenTheme);
+        //    setTheme(R.style.splashScreenTheme);
         super.onCreate(savedInstanceState);
-      //  setTheme(R.style.AppTheme);
+        //  setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
-
 
         button = (Button) findViewById(R.id.bn);
         textView = (TextView) findViewById(R.id.textView);
@@ -50,36 +50,37 @@ public class MainActivity extends AppCompatActivity {
         dateTextView = (TextView) findViewById(R.id.dateTextView);
         //requestQueue.start();
 
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringRequest stringRequest = new StringRequest(Request.Method.POST,serveur_url,
-                        new Response.Listener<String>(){
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, serveur_url,
+                        new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 requestQueue.start();
                                 textView.setText(response);
 
                             }
-                        },new Response.ErrorListener(){
+                        }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                            textView.setText("Error ...");
-                            error.printStackTrace();                    }
+                        textView.setText("Error ...");
+                        error.printStackTrace();
                     }
+                }
                 );
 
                 MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
             }
         });
 
-        buttonShowFamily.setOnClickListener(new View.OnClickListener(){
+        buttonShowFamily.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, family_url,(String) null,
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, family_url, (String) null,
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
                     }
                 });
@@ -102,18 +103,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Cache cache = new DiskBasedCache(getCacheDir(),1024*1025);
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1025);
         Network network = new BasicNetwork(new HurlStack());
 
-        requestQueue = new RequestQueue(cache,network);
+        requestQueue = new RequestQueue(cache, network);
         requestQueue.start();
 
         buttonFamily = (Button) findViewById(R.id.buttonFamily);
-        buttonFamily.setOnClickListener(new View.OnClickListener(){
+        buttonFamily.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,DisplayFamilys.class));
+                startActivity(new Intent(MainActivity.this, DisplayFamilys.class));
             }
         });
 

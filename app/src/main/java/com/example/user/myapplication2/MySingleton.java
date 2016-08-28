@@ -20,10 +20,6 @@ public class MySingleton {
         requestQueue = getRequestQueue();
     }
 
-    private MySingleton(){
-
-    }
-
     public RequestQueue getRequestQueue() {
     if(requestQueue==null){
         requestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
