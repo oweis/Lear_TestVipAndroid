@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context="com.example.user.myapplication2.DisplayFixturesByIdPartNumber">
+    tools:context=".DisplayFixtures">
 
     <ImageView
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
         android:background="#EB2B36"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="titleFamily : "
+        android:text="Nom de famille : "
         android:textColor="#ffffff" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:background="#2980B9"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="titlePartNumber : "
+        android:text="Nom de référence : "
         android:textColor="#ffffff" />
 
     <GridLayout
@@ -58,7 +58,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:paddingLeft="20dp"
-                android:text="nom : "
+                android:text="Nom : "
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
 
@@ -152,7 +152,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:gravity="center"
-                android:text="numero de connecteur / nombre des connecteurs"
+                android:text="Numero de connecteur / Nombre de connecteurs"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </GridLayout>
     </GridLayout>

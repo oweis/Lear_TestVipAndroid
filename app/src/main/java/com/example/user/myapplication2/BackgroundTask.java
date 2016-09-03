@@ -43,9 +43,9 @@ public class BackgroundTask {
     ArrayList<Wire> arrayListWire = new ArrayList<>();
     ArrayList<Fixture> arrayListFixture = new ArrayList<>();
 
+     String json_root_url = "http://192.168.5.1:8080/Lear_API/webapi/";
+    //String json_root_url = "http://10.0.2.2:8080/Lear_API/webapi/";
 
-    // String json_root_url = "http://192.168.5.1:8080/Lear_API/webapi/";
-    String json_root_url = "http://10.0.2.2:8080/Lear_API/webapi/";
 
     String json_familys_url = json_root_url + "familys";
     String json_partNumbers_url = json_root_url + "partnumbers/search/idFamily/";
@@ -89,7 +89,6 @@ public class BackgroundTask {
                                 e.printStackTrace();
                             }
                         }
-//TODO open activity hna ida mal9itlhax xi l3ba b asynctask
                     }
                 }, new Response.ErrorListener() {
             @Override

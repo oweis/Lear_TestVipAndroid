@@ -11,18 +11,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.user.Model.Fixture;
 
 import java.util.ArrayList;
 
-public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
+public class DisplayFixtures extends AppCompatActivity {
 
     Fixture fixture;
     ArrayList<Fixture> arrayListFixtures = new ArrayList<>();
     int idPartNumber, idFamily;
     int position = 0;
+    int positionHuman;
 
     TextView nameFixture;
     TextView textViewTitleFamily, textViewTitlePartNumber, textViewStep;
@@ -42,7 +42,7 @@ public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
         titlePartNumber = getIntent().getExtras().getString("titlePartNumber");
 
 
-        FixturesTask fixtureTask = new FixturesTask(DisplayFixturesByIdPartNumber.this);
+        FixturesTask fixtureTask = new FixturesTask(DisplayFixtures.this);
         fixtureTask.execute();
 
     }
@@ -53,7 +53,7 @@ public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
         Activity mActivity;
         ProgressDialog progressDialog;
 
-        public FixturesTask(DisplayFixturesByIdPartNumber displayFixtures) {
+        public FixturesTask(DisplayFixtures displayFixtures) {
             super();
             mActivity = displayFixtures;
 
@@ -103,7 +103,7 @@ public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
     }
 
     public void setStep() {
-        int positionHuman = position + 1;
+         positionHuman = position + 1;
         step = positionHuman + "/" + arrayListFixtures.size();
         textViewStep.setText(step);
     }
@@ -114,8 +114,8 @@ public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
                 fixture = getFixtureInPosition(position);
                 showValues();
                 setStep();
-                setButtonVisibility();
                 position++;
+                setButtonVisibility();
             } else {
                 startWiresActivity();
             }
@@ -131,17 +131,20 @@ public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
                 setStep();
                 setButtonVisibility();
             }
+        } else {
+            finish();
         }
-        else {finish();}
 
     }
 
     public void startWiresActivity() {
-        Intent intent = new Intent(DisplayFixturesByIdPartNumber.this, DisplayWiresByIdPartNumber.class);
+     //   int totalConnector = arrayListFixtures.size();
+        Intent intent = new Intent(DisplayFixtures.this, DisplayWires.class);
         intent.putExtra("idFamily", idFamily);
         intent.putExtra("idPartNumber", idPartNumber);
         intent.putExtra("titleFamily", titleFamily);
         intent.putExtra("titlePartNumber", titlePartNumber);
+        intent.putExtra("totalConnector", positionHuman);
         startActivity(intent);
     }
 
@@ -150,7 +153,7 @@ public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
         if (assertMaxPosition()) {
             updateImageButtonNext(buttonNext);
         } else if (assertMinPosition()) {
-            updateImageButtonPrecedent(buttonPrecedent);
+           hideImageButton(buttonPrecedent);
         } else {
             showImageButton();
         }
@@ -168,9 +171,13 @@ public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
         buttonPrecedent.setClickable(true);
     }
 
-    public void updateImageButtonNext(ImageButton imageButton) {imageButton.setImageResource(R.drawable.royal_right);}
-    public void updateImageButtonPrecedent(ImageButton imageButton) {imageButton.setImageResource(R.drawable.royal_left);}
+    public void updateImageButtonNext(ImageButton imageButton) {
+        imageButton.setImageResource(R.drawable.rightwire);
+    }
 
+    public void updateImageButtonPrecedent(ImageButton imageButton) {
+        imageButton.setImageResource(R.drawable.royal_left);
+    }
 
 
     public boolean assertMaxPosition() {
@@ -197,8 +204,8 @@ public class DisplayFixturesByIdPartNumber extends AppCompatActivity {
     }
 
     public void showTitle() {
-        textViewTitleFamily.setText(titleFamily);
-        textViewTitlePartNumber.setText(titlePartNumber);
+        textViewTitleFamily.setText("Nom de famille : " + titleFamily);
+        textViewTitlePartNumber.setText("Nom de référence : " +titlePartNumber);
     }
 
     public void showNameFixture() {

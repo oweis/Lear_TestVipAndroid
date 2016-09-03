@@ -9,7 +9,6 @@ public class Color {
     }
     //TODO create function getColorHex so we can use it to modify background to make testing easier
 
-    //TODO update color name with the new ones
     public void getColorRGB(String colorName) {
         int colorRGB;
         switch (colorName) {
@@ -95,6 +94,9 @@ public class Color {
         String colorCompleteName;
         switch (colorName) {
             case "NULL":
+                colorCompleteName = "Nothing";
+                break;
+            case "Nothing":
                 colorCompleteName = "Null";
                 break;
             case "W":
@@ -116,7 +118,7 @@ public class Color {
                 colorCompleteName = "Blue";
                 break;
             case "LG":
-                colorCompleteName = "Light green";
+                colorCompleteName = "LIGHT GREEN";
                 break;
             case "GR":
                 colorCompleteName = "Grey";
@@ -131,43 +133,109 @@ public class Color {
                 colorCompleteName = "Pink";
                 break;
             case "SB":
-                colorCompleteName = "Sky Blue";
+                colorCompleteName = "SKY BLUE";
                 break;
             case "G":
                 colorCompleteName = "Green";
                 break;
             case "BK":
-                colorCompleteName = "Black1";
+                colorCompleteName = "BLACK";
                 break;
             case "WH":
-                colorCompleteName = "White1";
-                break;
-            case "BN":
-                colorCompleteName = "Brown1";
-                break;
-            case "GN":
-                colorCompleteName = "Green1";
+                colorCompleteName = "WHITE";
                 break;
             case "VT":
-                colorCompleteName = "Violet1";
+                colorCompleteName = "PURPLE";
                 break;
             case "BU":
-                colorCompleteName = "Blue1";
+                colorCompleteName = "BLUE";
                 break;
             case "GY":
-                colorCompleteName = "Grey1";
+                colorCompleteName = "GREY";
                 break;
             case "RD":
-                colorCompleteName = "Red1";
+                colorCompleteName = "RED";
                 break;
             case "OG":
-                colorCompleteName = "Orange1";
+                colorCompleteName = "ORANGE";
                 break;
             case "YE":
-                colorCompleteName = "Yellow1";
+                colorCompleteName = "YELLOW";
+                break;
+
+            case "White":
+                colorCompleteName = "W";
+                break;
+            case "Yellow":
+                colorCompleteName = "Y";
+                break;
+            case "Orange":
+                colorCompleteName = "O";
+                break;
+            case "Red":
+                colorCompleteName = "R";
+                break;
+            case "Purple":
+                colorCompleteName = "V";
+                break;
+            case "Blue":
+                colorCompleteName = "L";
+                break;
+            case "LIGHT GREEN":
+                colorCompleteName = "LG";
+                break;
+            case "Grey":
+                colorCompleteName = "GR";
+                break;
+            case "Brown":
+                colorCompleteName = "BR";
+                break;
+            case "Black":
+                colorCompleteName = "B";
+                break;
+            case "Pink":
+                colorCompleteName = "P";
+                break;
+            case "SKY BLUE":
+                colorCompleteName = "SB";
+                break;
+            case "Green":
+                colorCompleteName = "G";
+                break;
+            case "BLACK":
+                colorCompleteName = "BK";
+                break;
+            case "WHITE":
+                colorCompleteName = "WH";
+
+
+                break;
+            case "PURPLE":
+                colorCompleteName = "VT";
+                break;
+            case "BLUE":
+                colorCompleteName = "BU";
+                break;
+            case "GREY":
+                colorCompleteName = "GY";
+                break;
+            case "RED":
+                colorCompleteName = "RD";
+                break;
+            case "ORANGE":
+                colorCompleteName = "OG";
+                break;
+            case "YELLOW":
+                colorCompleteName = "YE";
+                break;
+            case "PK":
+                colorCompleteName = "PINK";
+                break;
+            case "PINK":
+                colorCompleteName = "PK";
                 break;
             default:
-                colorCompleteName = "Default";
+                colorCompleteName = colorName;
                 break;
 
         }

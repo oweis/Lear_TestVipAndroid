@@ -12,17 +12,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.user.Model.Family;
 import com.example.user.Model.PartNumber;
 
 import java.util.ArrayList;
 
-public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
+public class DisplayPartNumbers extends AppCompatActivity {
 
     static int idFamily;
     static String titleFamily;
     RecyclerView recyclerViewPartNumbers;
     RecyclerView.LayoutManager layoutManager;
+    TextView textViewTitleFamily;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
         recyclerViewPartNumbers.setLayoutManager(layoutManager);
         recyclerViewPartNumbers.setHasFixedSize(true);
 
-        PartNumbersTask partNumbersTask = new PartNumbersTask(DisplayPartNumbersByIdFamily.this);
+        PartNumbersTask partNumbersTask = new PartNumbersTask(DisplayPartNumbers.this);
         partNumbersTask.execute();
 
     }
@@ -48,24 +48,27 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
         int idPartNumber = Integer.parseInt(v.getTag().toString());
         TextView nameUsedInLearTextView = (TextView) findViewById(R.id.nameUsedInLear);
         String titlePartNumber = nameUsedInLearTextView.getText().toString();
-        //Intent intent = new Intent(DisplayPartNumbersByIdFamily.this, DisplayWiresByIdPartNumber.class);
-        Intent intent = new Intent(DisplayPartNumbersByIdFamily.this, DisplayFixturesByIdPartNumber.class);
+        Intent intent = new Intent(DisplayPartNumbers.this, DisplayFixtures.class);
         intent.putExtra("idPartNumber", idPartNumber);
         intent.putExtra("titleFamily", titleFamily);
         intent.putExtra("titlePartNumber", titlePartNumber);
-        intent.putExtra("idFamily",idFamily);
+        intent.putExtra("idFamily", idFamily);
         startActivity(intent);
     }
-}
 
-    class PartNumbersTask extends AsyncTask<Context, Void, ArrayList<PartNumber> > {
+    public void showTitle() {
+        textViewTitleFamily.setText("Nom de famille : " + titleFamily);
+    }
+
+
+    class PartNumbersTask extends AsyncTask<Context, Void, ArrayList<PartNumber>> {
 
         Context ApplicationContext;
         Activity mActivity;
-        ProgressDialog progressDialog ;
+        ProgressDialog progressDialog;
         RecyclerView recyclerViewPartNumbers;
 
-        public PartNumbersTask (DisplayPartNumbersByIdFamily displayPartNumbersByIdFamily) {
+        public PartNumbersTask(DisplayPartNumbers displayPartNumbersByIdFamily) {
             super();
             mActivity = displayPartNumbersByIdFamily;
         }
@@ -76,11 +79,11 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
             progressDialog = new ProgressDialog(mActivity);
             progressDialog.setMessage("Loading part numbers");
             progressDialog.show();
-      }
+        }
 
         @Override
-        protected void onPostExecute(ArrayList<PartNumber>  result) {
-
+        protected void onPostExecute(ArrayList<PartNumber> result) {
+            showTitle();
             recyclerViewPartNumbers = (RecyclerView) mActivity.findViewById(R.id.recyclerViewPartNumbers);
             RecyclerView.Adapter adapter = new RecyclerAdapterPartNumber(result);
             recyclerViewPartNumbers.setAdapter(adapter);
@@ -92,13 +95,14 @@ public class DisplayPartNumbersByIdFamily extends AppCompatActivity {
 
         @Override
         protected ArrayList<PartNumber> doInBackground(Context... params) {
-
+            textViewTitleFamily = (TextView) findViewById(R.id.titleFamily);
             BackgroundTask backgroundTask = new BackgroundTask(mActivity);
-            ArrayList<PartNumber> partNumbers = backgroundTask.getListPartNumbersByIdFamily(DisplayPartNumbersByIdFamily.idFamily);
+            ArrayList<PartNumber> partNumbers = backgroundTask.getListPartNumbersByIdFamily(DisplayPartNumbers.idFamily);
             return partNumbers;
         }
 
         @Override
         protected void onProgressUpdate(Void... values) {
         }
+    }
 }

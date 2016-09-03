@@ -55,7 +55,7 @@
         android:text="Client : "
         android:textColor="#ffffff" />
 
-    <TextView
+    <!-- <TextView
         android:id="@+id/extra"
 
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/extra"
         android:text="Date creation  : "
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff" /> -->
 
     <Button
         android:id="@+id/buttonIdFamily"

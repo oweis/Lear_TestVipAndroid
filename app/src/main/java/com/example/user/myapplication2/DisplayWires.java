@@ -7,17 +7,16 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.user.Design.Color;
 import com.example.user.Model.Wire;
 
 import java.util.ArrayList;
 
-public class DisplayWiresByIdPartNumber extends AppCompatActivity {
+public class DisplayWires extends AppCompatActivity {
 
     Wire wire;
     ArrayList<Wire> arrayListWires = new ArrayList<>();
@@ -29,21 +28,24 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
     String step;
     String titleFamily, titlePartNumber;
     ImageButton buttonNext, buttonPrecedent;
-
+    int totalConnector, totalWire;
+    int positionHuman;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_wires);
+
         idFamily = getIntent().getExtras().getInt("idFamily");
         idPartNumber = getIntent().getExtras().getInt("idPartNumber");
         titleFamily = getIntent().getExtras().getString("titleFamily");
         titlePartNumber = getIntent().getExtras().getString("titlePartNumber");
+        totalConnector = getIntent().getExtras().getInt("totalConnector");
 
         textViewTitleFamily = (TextView) findViewById(R.id.titleFamily);
         textViewTitlePartNumber = (TextView) findViewById(R.id.titlePartNumber);
 
-        WiresTask wiresTask = new WiresTask(DisplayWiresByIdPartNumber.this);
+        WiresTask wiresTask = new WiresTask(DisplayWires.this);
         wiresTask.execute();
 
     }
@@ -54,7 +56,7 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
         Activity mActivity;
         ProgressDialog progressDialog;
 
-        public WiresTask(DisplayWiresByIdPartNumber displayWires) {
+        public WiresTask(DisplayWires displayWires) {
             super();
             mActivity = displayWires;
         }
@@ -70,7 +72,10 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<Wire> result) {
             showTitle();
+            setButtonVisibility();
             buttonPrecedent.setClickable(false);
+            totalWire = arrayListWires.size();
+
             buttonPrecedent.setVisibility(View.INVISIBLE);
             if (progressDialog != null) {
                 progressDialog.dismiss();
@@ -109,7 +114,7 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
     }
 
     public void setStep() {
-        int positionHuman = position + 1;
+        positionHuman = position + 1;
         step = positionHuman + "/" + arrayListWires.size();
         textViewStep.setText(step);
     }
@@ -120,10 +125,34 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
                 wire = getWireInPosition(position);
                 showValues();
                 setStep();
-                setButtonVisibility();
                 position++;
-            }else{startDoneActivity();}
+
+                setButtonVisibility();
+            } else {
+                startDoneActivity();
+            }
         }
+    }
+
+    public void setColorName(View view) {
+        TextView c = (TextView) findViewById(R.id.color);
+        Color color = new Color();
+        String colorName = color.getColorName(c.getText().toString());
+        c.setText(colorName);
+    }
+
+    public void setColorNameA(View view) {
+        TextView color_A = (TextView) findViewById(R.id.color_A);
+        Color color = new Color();
+        String colorName = color.getColorName(color_A.getText().toString());
+        color_A.setText(colorName);
+    }
+
+    public void setColorNameB(View view) {
+        TextView color_B = (TextView) findViewById(R.id.color_B);
+        Color color = new Color();
+        String colorName = color.getColorName(color_B.getText().toString());
+        color_B.setText(colorName);
     }
 
     public void showPrecedentWire(View view) {
@@ -141,20 +170,22 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
     }
 
     public void startDoneActivity() {
-        Intent intent = new Intent(DisplayWiresByIdPartNumber.this, MainActivity.class);
+        Intent intent = new Intent(DisplayWires.this, DisplaySucces.class);
         intent.putExtra("idFamily", idFamily);
         intent.putExtra("idPartNumber", idPartNumber);
         intent.putExtra("titleFamily", titleFamily);
         intent.putExtra("titlePartNumber", titlePartNumber);
+        intent.putExtra("totalWire", positionHuman);
+        intent.putExtra("totalConnector", totalConnector);
         startActivity(intent);
     }
 
     public void setButtonVisibility() {
 
         if (assertMaxPosition()) {
-            updateImageButton(buttonNext);
+            updateImageButtonNext(buttonNext);
         } else if (assertMinPosition()) {
-            hideImageButton(buttonPrecedent);
+            updateImageButtonPrecedent(buttonPrecedent);
         } else {
             showImageButton();
         }
@@ -167,21 +198,24 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
 
     public void showImageButton() {
         buttonPrecedent.setVisibility(View.VISIBLE);
-        buttonPrecedent.setClickable(true
-        );
+        buttonPrecedent.setClickable(true);
+        buttonNext.setVisibility(View.VISIBLE);
+        buttonNext.setClickable(true);
         buttonNext.setImageResource(R.drawable.right);
         buttonPrecedent.setImageResource(R.drawable.left);
     }
 
-    public void updateImageButton(ImageButton imageButton) {
-        if (imageButton == buttonNext) imageButton.setImageResource(R.drawable.royal_right);
-        if (imageButton == buttonPrecedent) imageButton.setImageResource(R.drawable.royal_left);
+    public void updateImageButtonNext(ImageButton imageButton) {
+        imageButton.setImageResource(R.drawable.rightsuccess);
     }
 
+    public void updateImageButtonPrecedent(ImageButton imageButton) {
+        imageButton.setImageResource(R.drawable.leftconnector);
+    }
 
     public boolean assertMaxPosition() {
 
-        return position >= arrayListWires.size();
+        return position >= arrayListWires.size() && arrayListWires.size() != 0;
     }
 
     public boolean assertMinPosition() {
@@ -199,8 +233,8 @@ public class DisplayWiresByIdPartNumber extends AppCompatActivity {
     }
 
     public void showTitle() {
-        textViewTitleFamily.setText(titleFamily);
-        textViewTitlePartNumber.setText(titlePartNumber);
+        textViewTitleFamily.setText("Nom de famille : " + titleFamily);
+        textViewTitlePartNumber.setText("Nom de référence : " + titlePartNumber);
     }
 
     public void setTextViewTitlePartNumber(TextView textViewTitlePartNumber) {

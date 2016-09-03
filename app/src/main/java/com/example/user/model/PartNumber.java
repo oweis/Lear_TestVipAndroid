@@ -1,11 +1,5 @@
 package com.example.user.Model;
 
-import android.os.AsyncTask;
-
-import com.example.user.myapplication2.DisplayPartNumbersByIdFamily;
-import com.example.user.myapplication2.RecyclerAdapterFamily;
-
-import java.util.ArrayList;
 import java.util.Date;
 
 public class PartNumber {

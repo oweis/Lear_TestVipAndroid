@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 //import com.example.user.AsyncTask.FamilysTask;
 import com.example.user.Model.Family;
-import com.example.user.Model.PartNumber;
 
 import java.util.ArrayList;
 
@@ -26,14 +25,10 @@ public class DisplayFamilys extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTheme(R.style.AppTheme_NoActionBar);
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_familys);
-
-        recyclerViewFamilys = (RecyclerView) findViewById(R.id.recyclerViewFamilys);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerViewFamilys.setLayoutManager(layoutManager);
-        recyclerViewFamilys.setHasFixedSize(true);
-
         FamilysTask familysTask = new FamilysTask(DisplayFamilys.this);
         familysTask.execute();
 
@@ -44,54 +39,61 @@ public class DisplayFamilys extends AppCompatActivity {
         int idFamily = Integer.parseInt(v.getTag().toString());
         TextView namePassByUserTextView = (TextView) findViewById(R.id.namePassByUser);
         String titleFamily = namePassByUserTextView.getText().toString();
-        Intent intent = new Intent(DisplayFamilys.this, DisplayPartNumbersByIdFamily.class);
+        Intent intent = new Intent(DisplayFamilys.this, DisplayPartNumbers.class);
         intent.putExtra("idFamily", idFamily);
         intent.putExtra("titleFamily", titleFamily);
         startActivity(intent);
 
     }
 
-}
 
-class FamilysTask extends AsyncTask<Context, Void, ArrayList<Family>> {
+    class FamilysTask extends AsyncTask<Context, Void, ArrayList<Family>> {
 
-    Context ApplicationContext;
-    Activity mActivity;
-    ProgressDialog progressDialog;
-    RecyclerView recyclerViewFamilys;
+        Context ApplicationContext;
+        Activity mActivity;
+        ProgressDialog progressDialog;
 
-    public FamilysTask(DisplayFamilys displayFamilys) {
-        super();
-        mActivity = displayFamilys;
-    }
-
-    @Override
-    protected void onPreExecute() {
-        progressDialog = new ProgressDialog(mActivity);
-        progressDialog.setMessage("loading");
-        progressDialog.show();
-    }
-
-    @Override
-    protected void onPostExecute(ArrayList<Family> result) {
-
-        recyclerViewFamilys = (RecyclerView) mActivity.findViewById(R.id.recyclerViewFamilys);
-        RecyclerView.Adapter adapter = new RecyclerAdapterFamily(result);
-        recyclerViewFamilys.setAdapter(adapter);
-        if (progressDialog != null) {
-            progressDialog.dismiss();
+        public FamilysTask(DisplayFamilys displayFamilys) {
+            super();
+            mActivity = displayFamilys;
         }
 
-    }
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(mActivity);
+            progressDialog.setMessage("loading");
+            progressDialog.show();
+        }
 
-    @Override
-    protected ArrayList<Family> doInBackground(Context... params) {
-        BackgroundTask backgroundTask = new BackgroundTask(mActivity);
-        ArrayList<Family> familys = backgroundTask.getListFamilys();
-        return familys;
-    }
+        @Override
+        protected void onPostExecute(ArrayList<Family> result) {
 
-    @Override
-    protected void onProgressUpdate(Void... values) {
+            //setTheme(R.style.whiteScreenTheme);
+            setContentView(R.layout.activity_display_familys);
+
+            recyclerViewFamilys = (RecyclerView) findViewById(R.id.recyclerViewFamilys);
+            layoutManager = new LinearLayoutManager(mActivity);
+            recyclerViewFamilys.setLayoutManager(layoutManager);
+            recyclerViewFamilys.setHasFixedSize(true);
+
+            recyclerViewFamilys = (RecyclerView) mActivity.findViewById(R.id.recyclerViewFamilys);
+            RecyclerView.Adapter adapter = new RecyclerAdapterFamily(result);
+            recyclerViewFamilys.setAdapter(adapter);
+
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
+        }
+
+        @Override
+        protected ArrayList<Family> doInBackground(Context... params) {
+            BackgroundTask backgroundTask = new BackgroundTask(mActivity);
+            ArrayList<Family> familys = backgroundTask.getListFamilys();
+            return familys;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+        }
     }
 }

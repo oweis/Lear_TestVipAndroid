@@ -61,5 +61,5 @@
         android:onClick="getIdPartNumber"
         android:tag="0"
         android:drawableLeft="@drawable/button_partnumber"
-        android:text="Lancer test vip" />
+        android:text="Lancer test BIP" />
 </LinearLayout>

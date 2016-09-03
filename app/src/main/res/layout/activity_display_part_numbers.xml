@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.user.myapplication2.DisplayPartNumbersByIdFamily"
+    tools:context=".DisplayPartNumbers"
     android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
@@ -16,6 +16,16 @@
         android:adjustViewBounds="true"
         android:elevation="15dp"
         />
+
+    <TextView
+        android:id="@+id/titleFamily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EB2B36"
+        android:gravity="right"
+        android:paddingRight="10dp"
+        android:text="Nom de famille : "
+        android:textColor="#ffffff" />
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
