@@ -18,13 +18,13 @@ public class RecyclerAdapterFamily extends RecyclerView.Adapter<RecyclerAdapterF
 
     ArrayList<Family> arrayList = new ArrayList<>();
 
-    public RecyclerAdapterFamily(ArrayList<Family> arrayList){
+    public RecyclerAdapterFamily(ArrayList<Family> arrayList) {
         this.arrayList = arrayList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_family,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_family, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
@@ -36,7 +36,7 @@ public class RecyclerAdapterFamily extends RecyclerView.Adapter<RecyclerAdapterF
 
         holder.namePassByUser.setText(title);
         holder.nameUsedInLear.setText("Name Used In Lear : " + arrayList.get(position).getNameUsedInLear());
-        holder.nameUsedInClient.setText("Name Used In Client : " +arrayList.get(position).getNameUsedInClient());
+        holder.nameUsedInClient.setText("Name Used In Client : " + arrayList.get(position).getNameUsedInClient());
         holder.date.setText("Date : " + arrayList.get(position).getDate());
         holder.client.setText("Client : " + arrayList.get(position).getClient());
         holder.buttonIdFamily.setTag(arrayList.get(position).getId());
@@ -48,10 +48,11 @@ public class RecyclerAdapterFamily extends RecyclerView.Adapter<RecyclerAdapterF
     }
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView namePassByUser,nameUsedInLear,nameUsedInClient,date,client,extra,date_creation;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView namePassByUser, nameUsedInLear, nameUsedInClient, date, client;
         Button buttonIdFamily;
-        public MyViewHolder(View itemView){
+
+        public MyViewHolder(View itemView) {
             super(itemView);
 
             namePassByUser = (TextView) itemView.findViewById(R.id.namePassByUser);

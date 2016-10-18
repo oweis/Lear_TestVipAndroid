@@ -5,13 +5,12 @@ public class Fixture {
 	private int id;
 	private int idFamily;
 	private String nameFixture;
-	private String drawing;
 
-	public Fixture(int id,int idFamily, String nameFixture, String drawing) {
+
+	public Fixture(int id,int idFamily, String nameFixture) {
 		this.id = id;
 		this.idFamily = idFamily;
 		this.nameFixture = nameFixture;
-		this.drawing = drawing;
 	}
 	
 	public int getIdFamily() {
@@ -38,12 +37,5 @@ public class Fixture {
 		this.nameFixture = nameFixture;
 	}
 
-	public String getDrawing() {
-		return drawing;
-	}
-
-	public void setDrawing(String drawing) {
-		this.drawing = drawing;
-	}
 
 }

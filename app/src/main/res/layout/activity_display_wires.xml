@@ -24,7 +24,7 @@
         android:background="#EB2B36"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="Nom de famille : "
+        android:text="@string/titleFamily"
         android:textColor="#ffffff" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:background="#2980B9"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="Nom de référence : "
+        android:text="@string/titlePartNumber"
         android:textColor="#ffffff" />
 
     <GridLayout
@@ -58,7 +58,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:paddingLeft="20dp"
-                android:text="Nom : "
+                android:text="@string/name"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
 
@@ -72,7 +72,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:paddingLeft="20dp"
-                android:text="nom de fil"
+                android:text="@string/nameWire"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
 
@@ -85,7 +85,7 @@
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:paddingLeft="20dp"
-                android:text="Couleur : "
+                android:text="@string/color"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
 
@@ -100,7 +100,7 @@
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:paddingLeft="20dp"
-                android:text="couleur"
+                android:text="@string/colorWire"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
         </GridLayout>
@@ -123,7 +123,7 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
-                android:text="Connecteur A"
+                android:text="@string/connector_A"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -135,7 +135,7 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_row="2"
                 android:layout_rowWeight="1"
-                android:text="Pin A"
+                android:text="@string/pin_A"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -149,7 +149,7 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_row="3"
                 android:layout_rowWeight="1"
-                android:text="Couleur A"
+                android:text="@string/color_A"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -161,7 +161,7 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
-                android:text="Connecteur B"
+                android:text="@string/connector_B"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
@@ -174,7 +174,7 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_row="2"
                 android:layout_rowWeight="1"
-                android:text="Pin B"
+                android:text="@string/pin_B"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -187,7 +187,7 @@
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_row="3"
                 android:layout_rowWeight="1"
-                android:text="Couleur B"
+                android:text="@string/color_B"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
@@ -246,7 +246,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:gravity="center"
-                android:text="Numero de fil / Nombre de fils "
+                android:text="@string/stepWire"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </GridLayout>
     </GridLayout>

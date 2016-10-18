@@ -10,24 +10,15 @@ public class PartNumber {
 	private String nameUsedInClient;
 	private String level;
 	private String date;
-	private String extra;
-	private Date date_creation;
 	
 	
 	public PartNumber() {
 	
 	}
-	
-	public Date getDate_creation() {
-		return date_creation;
-	}
 
-	public void setDate_creation(Date date_creation) {
-		this.date_creation = date_creation;
-	}
 
 	public PartNumber(int id,int idFamily, String nameUsedInLear, String nameUsedInClient,
-			String level, String date, String extra) {
+			String level, String date) {
 		
 		this.id = id;
 		this.idFamily = idFamily;
@@ -35,7 +26,6 @@ public class PartNumber {
 		this.nameUsedInClient = nameUsedInClient;
 		this.level = level;
 		this.date = date;
-		this.extra = extra;
 			}
 
 	public int getId() {
@@ -87,15 +77,6 @@ public class PartNumber {
 		this.date = date;
 	}
 
-
-	public String getExtra() {
-		return extra;
-	}
-
-
-	public void setExtra(String extra) {
-		this.extra = extra;
-	}
 
 	public int getIdFamily() {
 		return idFamily;

@@ -12,10 +12,34 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-//import com.example.user.AsyncTask.FamilysTask;
 import com.example.user.Model.Family;
 
+import org.acra.ACRA;
+import org.acra.ReportField;
+import org.acra.ReportingInteractionMode;
+import org.acra.annotation.ReportsCrashes;
+import org.acra.sender.HttpSender;
+
 import java.util.ArrayList;
+
+@ReportsCrashes(
+        formUri = "https://oweisyahya.cloudant.com/acra-Bip/_design/acra-storage/_update/report",
+        reportType = HttpSender.Type.JSON,
+        httpMethod = HttpSender.Method.POST,
+        formUriBasicAuthLogin = "ondessorbookeenceredlike",
+        formUriBasicAuthPassword = "46a70ce892184e13189aad937815d0afb37eb991",
+        customReportContent = {
+                ReportField.APP_VERSION_CODE,
+                ReportField.APP_VERSION_NAME,
+                ReportField.ANDROID_VERSION,
+                ReportField.PACKAGE_NAME,
+                ReportField.REPORT_ID,
+                ReportField.BUILD,
+                ReportField.STACK_TRACE
+        },
+        mode = ReportingInteractionMode.TOAST,
+        resToastText = R.string.toast_crash
+)
 
 public class DisplayFamilys extends AppCompatActivity {
 
@@ -27,8 +51,9 @@ public class DisplayFamilys extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         setTheme(R.style.AppTheme_NoActionBar);
-
         super.onCreate(savedInstanceState);
+        ACRA.init(this.getApplication());
+
         FamilysTask familysTask = new FamilysTask(DisplayFamilys.this);
         familysTask.execute();
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- All Activity -->
+    <string name="titlePartNumber">PartNumber name : </string>
+    <string name="titleFamily">Family name :</string>
+    <string name="name">Name : </string>
+    <string name="color">Color : </string>
+    <string name="date">Date : </string>
+
+
+
+    <!-- Activity Family -->
+    <string name="namePassByUserFamily">Name chosen by user : </string>
+    <string name="nameUsedInLearFamily">Name used by LEAR  : </string>
+    <string name="nameUsedInClientFamily">Name used by client company : </string>
+    <string name="client">Client : </string>
+    <string name="buttonShowPartNumber">Show PartNumbers</string>
+
+    <!-- Activity Part Number -->
+    <string name="nameUsedInLearPartNumber">Name used by LEAR : </string>
+    <string name="nameUsedInClientPartNumber">Name used by client company : </string>
+    <string name="level">Level : </string>
+    <string name="buttonStartTest">Start test BIP</string>
+
+    <!-- Activity Connector -->
+    <string name="nameConnector">Connector name </string>
+    <string name="stepConnector">Connector number / Number of connectors</string>
+
+    <!-- Activity Wire -->
+    <string name="nameWire">name</string>
+    <string name="colorWire">color</string>
+    <string name="connector_A">Connector A</string>
+    <string name="connector_B">Connector B</string>
+    <string name="pin_A">Pin A</string>
+    <string name="pin_B">Pin B</string>
+    <string name="color_A">Color A</string>
+    <string name="color_B">Color B</string>
+    <string name="stepWire">Wire number / Number of wires</string>
+
+
+    <!-- Activity Success -->
+    <string name="nameFamily">Family name : </string>
+    <string name="namePartNumber">PartNumber name : </string>
+    <string name="numberPartNumber">Number of connectors  : </string>
+    <string name="numberWire">Number of wires : </string>
+    <string name="buttonRestart">Restart the test</string>
+    <string name="buttonReturn">return to the same family</string>
+    <string name="buttonHome">Home</string>
+    <string name="toast_crash">Something went wrong! we will find a solution.</string>
+
+</resources>

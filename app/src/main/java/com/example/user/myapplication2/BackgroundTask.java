@@ -26,16 +26,6 @@ import java.util.Map;
  * Created by user on 16/08/2016.
  */
 public class BackgroundTask {
-
-    // PHP API URLS
-            /*
-                //String json_root_url = "http://192.168.43.214/testLear/";
-                //String json_familys_url = json_root_url + "getFamilys.php";
-                //String json_partNumbers_url = json_root_url + "getPartNumbers.php?idFamily=";
-                //String json_wires_url = json_root_url + "getWires.php?idPartNumber=";
-                //String json_fixtures_url = json_root_url + "getFixtures.php";
-
-             */
     Context context;
 
     ArrayList<Family> arrayListFamily = new ArrayList<>();
@@ -77,8 +67,7 @@ public class BackgroundTask {
                                         jsonObject.getString("nameUsedInLear"),
                                         jsonObject.getString("nameUsedInClient"),
                                         jsonObject.getString("date"),
-                                        jsonObject.getString("client"),
-                                        jsonObject.getString("extra")
+                                        jsonObject.getString("client")
                                 );
 
 
@@ -129,8 +118,7 @@ public class BackgroundTask {
                                         jsonObject.getString("nameUsedInLear"),
                                         jsonObject.getString("nameUsedInClient"),
                                         jsonObject.getString("level"),
-                                        jsonObject.getString("date"),
-                                        jsonObject.getString("extra")
+                                        jsonObject.getString("date")
                                 );
 
 
@@ -168,8 +156,8 @@ public class BackgroundTask {
                                 JSONObject jsonObject = response.getJSONObject(count);
                                 Fixture fixture = new Fixture(jsonObject.getInt("id"),
                                         jsonObject.getInt("idFamily"),
-                                        jsonObject.getString("nameFixture"),
-                                        jsonObject.getString("drawing"));
+                                        jsonObject.getString("nameFixture")
+                                );
 
                                 arrayListFixture.add(fixture);
                                 count++;
@@ -219,8 +207,6 @@ public class BackgroundTask {
                                         jsonObject.getString("color_B"),
                                         jsonObject.getString("splice_B")
                                 );
-
-                                wire.setDate_creation(new Date());
 
                                 arrayListWire.add(wire);
                                 count++;

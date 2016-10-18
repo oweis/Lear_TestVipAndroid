@@ -15,7 +15,7 @@
         android:padding="2dp"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="nameUsedInLear"
+        android:text="@string/nameUsedInLearPartNumber"
         android:textColor="#2980B9" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameUsedInLear"
         android:padding="2dp"
-        android:text="nameUsedInClient : "
+        android:text="@string/nameUsedInClientPartNumber"
         android:textColor="#ffffff" />
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameUsedInClient"
         android:padding="2dp"
-        android:text="Date : "
+        android:text="@string/date"
         android:textColor="#ffffff" />
 
     <TextView
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/date"
         android:padding="2dp"
-        android:text="Level : "
+        android:text="@string/level"
         android:textColor="#ffffff" />
 
     <Button
@@ -61,5 +61,5 @@
         android:onClick="getIdPartNumber"
         android:tag="0"
         android:drawableLeft="@drawable/button_partnumber"
-        android:text="Lancer test BIP" />
+        android:text="@string/buttonStartTest" />
 </LinearLayout>

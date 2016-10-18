@@ -34,7 +34,7 @@ public class DisplayFixtures extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_fixtures);
+        setContentView(R.layout.activity_display_connector);
 
         idPartNumber = getIntent().getExtras().getInt("idPartNumber");
         idFamily = getIntent().getExtras().getInt("idFamily");
@@ -50,7 +50,7 @@ public class DisplayFixtures extends AppCompatActivity {
     class FixturesTask extends AsyncTask<Context, Void, ArrayList<Fixture>> {
 
         Context ApplicationContext;
-        Activity mActivity;
+            Activity mActivity;
         ProgressDialog progressDialog;
 
         public FixturesTask(DisplayFixtures displayFixtures) {

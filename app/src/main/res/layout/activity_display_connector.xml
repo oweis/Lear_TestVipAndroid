@@ -24,7 +24,7 @@
         android:background="#EB2B36"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="Nom de famille : "
+        android:text="@string/titleFamily"
         android:textColor="#ffffff" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:background="#2980B9"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="Nom de référence : "
+        android:text="@string/titlePartNumber"
         android:textColor="#ffffff" />
 
     <GridLayout
@@ -58,7 +58,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:paddingLeft="20dp"
-                android:text="Nom : "
+                android:text="@string/name"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
 
@@ -72,7 +72,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:paddingLeft="20dp"
-                android:text="nom de connecteur"
+                android:text="@string/nameConnector"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#ffffff" />
 
@@ -152,7 +152,7 @@
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:gravity="center"
-                android:text="Numero de connecteur / Nombre de connecteurs"
+                android:text="@string/stepConnector"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </GridLayout>
     </GridLayout>

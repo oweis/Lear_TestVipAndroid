@@ -17,13 +17,13 @@
         android:paddingRight="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:text="namePassByUser : " />
+        android:text="@string/namePassByUserFamily" />
     <TextView
         android:id="@+id/nameUsedInLear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/namePassByUser"
-        android:text="nameUsedInLear : "
+        android:text="@string/nameUsedInLearFamily"
         android:textColor="#ffffff" />
 
     <TextView
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/date"
         android:layout_below="@+id/nameUsedInLear"
-        android:text="nameUsedInClient : "
+        android:text="@string/nameUsedInClientFamily"
 
         android:textColor="#ffffff" />
 
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/client"
         android:layout_below="@+id/nameUsedInClient"
-        android:text="Date : "
+        android:text="@string/date"
 
         android:textColor="#ffffff" />
 
@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/date"
-        android:text="Client : "
+        android:text="@string/client"
         android:textColor="#ffffff" />
 
     <!-- <TextView
@@ -80,6 +80,6 @@
         android:onClick="sendIdFamily"
         android:tag="0"
         android:drawableLeft="@drawable/button_family"
-        android:text="Afficher les part numbers" />
+        android:text="@string/buttonShowPartNumber" />
 
 </LinearLayout>

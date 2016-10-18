@@ -17,7 +17,6 @@ public class Wire{
 	private String pin_B;
 	private String color_B;
 	private String splice_B;
-	private Date date_creation;
 
 
 
@@ -40,14 +39,6 @@ public class Wire{
 		this.color_B = color_B;
 		this.splice_B = splice_B;
 		}
-
-	public Date getDate_creation() {
-		return date_creation;
-	}
-
-	public void setDate_creation(Date date_creation) {
-		this.date_creation = date_creation;
-	}
 
 
 	public int getIdFamily() {
