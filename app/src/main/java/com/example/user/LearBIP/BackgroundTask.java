@@ -1,4 +1,4 @@
-package com.example.user.myapplication2;
+package com.example.user.LearBIP;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -8,9 +8,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.user.Model.Connector;
 import com.example.user.Model.Family;
-import com.example.user.Model.Fixture;
-import com.example.user.Model.PartNumber;
+import com.example.user.Model.Cable;
 import com.example.user.Model.Wire;
 
 import org.json.JSONArray;
@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,22 +28,22 @@ public class BackgroundTask {
     Context context;
 
     ArrayList<Family> arrayListFamily = new ArrayList<>();
-    ArrayList<PartNumber> arrayListPartNumber = new ArrayList<>();
+    ArrayList<Cable> arrayListCable = new ArrayList<>();
     ArrayList<Wire> arrayListWire = new ArrayList<>();
-    ArrayList<Fixture> arrayListFixture = new ArrayList<>();
+    ArrayList<Connector> arrayListConnector = new ArrayList<>();
 
      String json_root_url = "http://192.168.5.1:8080/Lear_API/webapi/";
     //String json_root_url = "http://10.0.2.2:8080/Lear_API/webapi/";
 
 
     String json_familys_url = json_root_url + "familys";
-    String json_partNumbers_url = json_root_url + "partnumbers/search/idFamily/";
-    String json_wires_url = json_root_url + "wires/search/adapt/idPartNumber/";
-    String json_fixtures_url = json_root_url +"fixtures/search/idPartNumber/";
+    String json_cables_url = json_root_url + "cables/search/idFamily/";
+    String json_wires_url = json_root_url + "wires/search/adapt/idCable/";
+    String json_connectors_url = json_root_url +"connectors/search/idCable/";
 
-    String json_partNumbersByIdFamily_url;
-    String json_WiresByIdPartNumber_url;
-    String json_FixturesByIdPartNumber_url;
+    String json_cablesByIdFamily_url;
+    String json_WiresByIdCable_url;
+    String json_ConnectorByIdCable_url;
 
 
 
@@ -101,10 +100,10 @@ public class BackgroundTask {
         return arrayListFamily;
     }
 
-    public ArrayList<PartNumber> getListPartNumbersByIdFamily(int idFamily) {
+    public ArrayList<Cable> getListCablesByIdFamily(int idFamily) {
 
-        json_partNumbersByIdFamily_url = json_partNumbers_url + idFamily;
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, json_partNumbersByIdFamily_url, (String) null,
+        json_cablesByIdFamily_url = json_cables_url + idFamily;
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, json_cablesByIdFamily_url, (String) null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -113,7 +112,7 @@ public class BackgroundTask {
                             try {
 
                                 JSONObject jsonObject = response.getJSONObject(count);
-                                PartNumber partNumber = new PartNumber(jsonObject.getInt("id"),
+                                Cable cable = new Cable(jsonObject.getInt("id"),
                                         jsonObject.getInt("idFamily"),
                                         jsonObject.getString("nameUsedInLear"),
                                         jsonObject.getString("nameUsedInClient"),
@@ -122,7 +121,7 @@ public class BackgroundTask {
                                 );
 
 
-                                arrayListPartNumber.add(partNumber);
+                                arrayListCable.add(cable);
                                 count++;
 
                             } catch (JSONException e) {
@@ -139,13 +138,13 @@ public class BackgroundTask {
             }
         });
         MySingleton.getInstance(context).addToRequestQueue(jsonArrayRequest);
-        return arrayListPartNumber;
+        return arrayListCable;
     }
 
 
-    public ArrayList<Fixture> getListFixturesByIdPartNumber(int idPartNumber) {
-        json_FixturesByIdPartNumber_url = json_fixtures_url + idPartNumber;
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, json_FixturesByIdPartNumber_url, (String) null,
+    public ArrayList<Connector> getListConnectorByIdCable(int idCable) {
+        json_ConnectorByIdCable_url = json_connectors_url + idCable;
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, json_ConnectorByIdCable_url, (String) null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -154,12 +153,12 @@ public class BackgroundTask {
                             try {
 
                                 JSONObject jsonObject = response.getJSONObject(count);
-                                Fixture fixture = new Fixture(jsonObject.getInt("id"),
+                                Connector connector = new Connector(jsonObject.getInt("id"),
                                         jsonObject.getInt("idFamily"),
-                                        jsonObject.getString("nameFixture")
+                                        jsonObject.getString("nameConnector")
                                 );
 
-                                arrayListFixture.add(fixture);
+                                arrayListConnector.add(connector);
                                 count++;
 
                             } catch (JSONException e) {
@@ -178,13 +177,13 @@ public class BackgroundTask {
         });
 
         MySingleton.getInstance(context).addToRequestQueue(jsonArrayRequest);
-        return arrayListFixture;
+        return arrayListConnector;
     }
 
 
-    public ArrayList<Wire> getListWiresByIdPartNumber(int idPartNumber) {
-        json_WiresByIdPartNumber_url = json_wires_url + idPartNumber;
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, json_WiresByIdPartNumber_url, (String) null,
+    public ArrayList<Wire> getListWiresByIdCable(int idCable) {
+        json_WiresByIdCable_url = json_wires_url + idCable;
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, json_WiresByIdCable_url, (String) null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -195,7 +194,7 @@ public class BackgroundTask {
                                 JSONObject jsonObject = response.getJSONObject(count);
                                 Wire wire = new Wire(jsonObject.getInt("id"),
                                         jsonObject.getInt("idFamily"),
-                                        jsonObject.getInt("idPartNumber"),
+                                        jsonObject.getInt("idCable"),
                                         jsonObject.getString("nameWire"),
                                         jsonObject.getString("color"),
                                         jsonObject.getString("connector_A"),

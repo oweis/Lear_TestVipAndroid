@@ -55,10 +55,10 @@
         android:textColor="#ffffff" />
 
     <Button
-        android:id="@+id/buttonIdPartNumber"
+        android:id="@+id/buttonIdCable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="getIdPartNumber"
+        android:onClick="getIdCable"
         android:tag="0"
         android:drawableLeft="@drawable/button_partnumber"
         android:text="@string/buttonStartTest" />

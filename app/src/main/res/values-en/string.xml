@@ -3,7 +3,7 @@
 <resources>
 
     <!-- All Activity -->
-    <string name="titlePartNumber">PartNumber name : </string>
+    <string name="titlePartNumber">Cable name : </string>
     <string name="titleFamily">Family name :</string>
     <string name="name">Name : </string>
     <string name="color">Color : </string>
@@ -16,7 +16,7 @@
     <string name="nameUsedInLearFamily">Name used by LEAR  : </string>
     <string name="nameUsedInClientFamily">Name used by client company : </string>
     <string name="client">Client : </string>
-    <string name="buttonShowPartNumber">Show PartNumbers</string>
+    <string name="buttonShowPartNumber">Show Cables</string>
 
     <!-- Activity Part Number -->
     <string name="nameUsedInLearPartNumber">Name used by LEAR : </string>
@@ -42,7 +42,7 @@
 
     <!-- Activity Success -->
     <string name="nameFamily">Family name : </string>
-    <string name="namePartNumber">PartNumber name : </string>
+    <string name="namePartNumber">Cable name : </string>
     <string name="numberPartNumber">Number of connectors  : </string>
     <string name="numberWire">Number of wires : </string>
     <string name="buttonRestart">Restart the test</string>

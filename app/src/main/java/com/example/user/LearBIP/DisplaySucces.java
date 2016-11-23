@@ -1,4 +1,4 @@
-package com.example.user.myapplication2;
+package com.example.user.LearBIP;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,18 +12,18 @@ import android.widget.TextView;
 
 public class DisplaySucces extends AppCompatActivity {
 
-    int idPartNumber, idFamily;
-    String titleFamily, titlePartNumber;
+    int idCable, idFamily;
+    String titleFamily, titleCable;
     int totalWire, totalConnector;
 
-    TextView textViewFamily, textViewPartNumber, textViewWire, textViewConnector;
+    TextView textViewFamily, textViewCable, textViewWire, textViewConnector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_succes);
         textViewFamily = (TextView) findViewById(R.id.familySection);
-        textViewPartNumber = (TextView) findViewById(R.id.partNumberSection);
+        textViewCable = (TextView) findViewById(R.id.cableSection);
         textViewConnector = (TextView) findViewById(R.id.connectorSection);
         textViewWire = (TextView) findViewById(R.id.wireSection);
         SuccessTask successTask = new SuccessTask(DisplaySucces.this);
@@ -54,10 +54,10 @@ public class DisplaySucces extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Context... params) {
-            idPartNumber = getIntent().getExtras().getInt("idPartNumber");
+            idCable = getIntent().getExtras().getInt("idCable");
             idFamily = getIntent().getExtras().getInt("idFamily");
             titleFamily = getIntent().getExtras().getString("titleFamily");
-            titlePartNumber = getIntent().getExtras().getString("titlePartNumber");
+            titleCable = getIntent().getExtras().getString("titleCable");
             totalConnector = getIntent().getExtras().getInt("totalConnector");
             totalWire = getIntent().getExtras().getInt("totalWire");
             return null;
@@ -68,18 +68,18 @@ public class DisplaySucces extends AppCompatActivity {
         startActivity(new Intent(DisplaySucces.this, DisplayFamilys.class));
     }
 
-    public void startPartNumber(View view) {
-        Intent intent = new Intent(DisplaySucces.this, DisplayPartNumbers.class);
+    public void startCable(View view) {
+        Intent intent = new Intent(DisplaySucces.this, DisplayCables.class);
         intent.putExtra("idFamily", idFamily);
         intent.putExtra("titleFamily", titleFamily);
         startActivity(intent);
     }
 
-    public void startFixture(View view) {
-        Intent intent = new Intent(DisplaySucces.this, DisplayFixtures.class);
-        intent.putExtra("idPartNumber", idPartNumber);
+    public void startConnector(View view) {
+        Intent intent = new Intent(DisplaySucces.this, DisplayConnectors.class);
+        intent.putExtra("idCable", idCable);
         intent.putExtra("titleFamily", titleFamily);
-        intent.putExtra("titlePartNumber", titlePartNumber);
+        intent.putExtra("titleCable", titleCable);
         intent.putExtra("idFamily", idFamily);
         startActivity(intent);
     }
@@ -87,7 +87,7 @@ public class DisplaySucces extends AppCompatActivity {
 
     public void setInformation() {
         setFamilySection();
-        setPartNumberSection();
+        setCableSection();
         setWireSection();
         setConnectorSection();
 
@@ -97,8 +97,8 @@ public class DisplaySucces extends AppCompatActivity {
         textViewFamily.setText(titleFamily);
     }
 
-    public void setPartNumberSection() {
-        textViewPartNumber.setText(titlePartNumber);
+    public void setCableSection() {
+        textViewCable.setText(titleCable);
     }
 
     public void setWireSection() {

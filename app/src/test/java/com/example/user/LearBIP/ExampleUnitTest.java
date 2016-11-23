@@ -1,4 +1,4 @@
-package com.example.user.myapplication2;
+package com.example.user.LearBIP;
 
 import org.junit.Test;
 

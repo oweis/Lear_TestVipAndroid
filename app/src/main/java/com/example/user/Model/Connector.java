@@ -1,13 +1,13 @@
 package com.example.user.Model;
 
-public class Fixture {
+public class Connector {
 
 	private int id;
 	private int idFamily;
 	private String nameFixture;
 
 
-	public Fixture(int id,int idFamily, String nameFixture) {
+	public Connector(int id, int idFamily, String nameFixture) {
 		this.id = id;
 		this.idFamily = idFamily;
 		this.nameFixture = nameFixture;
@@ -29,7 +29,7 @@ public class Fixture {
 		this.id = id;
 	}
 
-	public String getNameFixture() {
+	public String getNameConnector() {
 		return nameFixture;
 	}
 

@@ -1,4 +1,4 @@
-package com.example.user.myapplication2;
+package com.example.user.LearBIP;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,24 +8,24 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import com.example.user.Model.PartNumber;
+import com.example.user.Model.Cable;
 
 import java.util.ArrayList;
 
 /**
  * Created by user on 16/08/2016.
  */
-public class RecyclerAdapterPartNumber extends RecyclerView.Adapter<RecyclerAdapterPartNumber.MyViewHolder> {
+public class RecyclerAdapterCable extends RecyclerView.Adapter<RecyclerAdapterCable.MyViewHolder> {
 
-    ArrayList<PartNumber> arrayList = new ArrayList<>();
+    ArrayList<Cable> arrayList = new ArrayList<>();
 
-    public RecyclerAdapterPartNumber(ArrayList<PartNumber> arrayList){
+    public RecyclerAdapterCable(ArrayList<Cable> arrayList){
         this.arrayList = arrayList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_partnumber,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_cable,parent,false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
     }
@@ -38,7 +38,7 @@ public class RecyclerAdapterPartNumber extends RecyclerView.Adapter<RecyclerAdap
         holder.nameUsedInClient.setText("Name Used In Client : " + arrayList.get(position).getNameUsedInClient());
         holder.level.setText("Level : " + arrayList.get(position).getLevel());
         holder.date.setText("Date : " +arrayList.get(position).getDate());
-        holder.buttonIdPartNumber.setTag(arrayList.get(position).getId());
+        holder.buttonIdCable.setTag(arrayList.get(position).getId());
 
     }
 
@@ -49,7 +49,7 @@ public class RecyclerAdapterPartNumber extends RecyclerView.Adapter<RecyclerAdap
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView nameUsedInLear,nameUsedInClient,level,date,id;
-        Button buttonIdPartNumber;
+        Button buttonIdCable;
         public MyViewHolder(View itemView){
             super(itemView);
 
@@ -58,7 +58,7 @@ public class RecyclerAdapterPartNumber extends RecyclerView.Adapter<RecyclerAdap
             level = (TextView) itemView.findViewById(R.id.level);
             date = (TextView) itemView.findViewById(R.id.date);
             id = (TextView) itemView.findViewById(R.id.id);
-            buttonIdPartNumber = (Button) itemView.findViewById(R.id.buttonIdPartNumber);
+            buttonIdCable = (Button) itemView.findViewById(R.id.buttonIdCable);
         }
 
     }

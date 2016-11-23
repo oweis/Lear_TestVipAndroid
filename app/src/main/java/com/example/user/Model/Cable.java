@@ -2,7 +2,7 @@ package com.example.user.Model;
 
 import java.util.Date;
 
-public class PartNumber {
+public class Cable {
 	
 	private int id;
 	private int idFamily;
@@ -12,13 +12,13 @@ public class PartNumber {
 	private String date;
 	
 	
-	public PartNumber() {
+	public Cable() {
 	
 	}
 
 
-	public PartNumber(int id,int idFamily, String nameUsedInLear, String nameUsedInClient,
-			String level, String date) {
+	public Cable(int id, int idFamily, String nameUsedInLear, String nameUsedInClient,
+				 String level, String date) {
 		
 		this.id = id;
 		this.idFamily = idFamily;

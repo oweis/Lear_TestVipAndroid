@@ -2,7 +2,7 @@
     <string name="app_name">Bip</string>
     <string name="title_activity_family">Family</string>
     <string name="title_activity_display_part_numbers">DisplayPartNumbers</string>
-    <string name="title_activity_display_part_numbers_by_id_family">displayPartNumbersByIdFamily</string>
+    <string name="title_activity_display_part_numbers_by_id_family">displayCablesByIdFamily</string>
 
     <!-- All Activity -->
     <string name="titlePartNumber">Nom de référence : </string>
@@ -22,7 +22,7 @@
     <string name="nameUsedInLearPartNumber">Nom de référence utilisé par LEAR : </string>
     <string name="nameUsedInClientPartNumber">Nom de référence utilisé par l\'entreprise cliente : </string>
     <string name="level">Niveau : </string>
-    <string name="buttonStartTest">Lancer test =BIP</string>
+    <string name="buttonStartTest">Lancer test BIP</string>
 
     <!-- Activity Connector -->
     <string name="nameConnector">nom de connecteur</string>
@@ -45,8 +45,8 @@
     <!-- Activity Success -->
     <string name="nameFamily">Nom de famille : </string>
     <string name="namePartNumber">Nom de référence : </string>
-    <string name="numberPartNumber">Nombre de connecteurs : </string>
-    <string name="numberWire">Nombre de fils : </string>
+    <string name="numberPartNumber">Nombre des connecteurs : </string>
+    <string name="numberWire">Nombre des fils : </string>
     <string name="buttonRestart">Refaire le test</string>
     <string name="buttonReturn">Retour a la même famille</string>
     <string name="buttonHome">Acceuil</string>

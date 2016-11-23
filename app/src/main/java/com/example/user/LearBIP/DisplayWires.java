@@ -1,4 +1,4 @@
-package com.example.user.myapplication2;
+package com.example.user.LearBIP;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -20,13 +20,13 @@ public class DisplayWires extends AppCompatActivity {
 
     Wire wire;
     ArrayList<Wire> arrayListWires = new ArrayList<>();
-    int idPartNumber, idFamily;
+    int idCable, idFamily;
     int position = 0;
 
     TextView nameWire, color, color_A, color_B, pin_A, pin_B, connector_A, connector_B;
-    TextView textViewTitleFamily, textViewTitlePartNumber, textViewStep;
+    TextView textViewTitleFamily, textViewTitleCable, textViewStep;
     String step;
-    String titleFamily, titlePartNumber;
+    String titleFamily, titleCable;
     ImageButton buttonNext, buttonPrecedent;
     int totalConnector, totalWire;
     int positionHuman;
@@ -37,13 +37,13 @@ public class DisplayWires extends AppCompatActivity {
         setContentView(R.layout.activity_display_wires);
 
         idFamily = getIntent().getExtras().getInt("idFamily");
-        idPartNumber = getIntent().getExtras().getInt("idPartNumber");
+        idCable = getIntent().getExtras().getInt("idCable");
         titleFamily = getIntent().getExtras().getString("titleFamily");
-        titlePartNumber = getIntent().getExtras().getString("titlePartNumber");
+        titleCable = getIntent().getExtras().getString("titleCable");
         totalConnector = getIntent().getExtras().getInt("totalConnector");
 
         textViewTitleFamily = (TextView) findViewById(R.id.titleFamily);
-        textViewTitlePartNumber = (TextView) findViewById(R.id.titlePartNumber);
+        textViewTitleCable = (TextView) findViewById(R.id.titleCable);
 
         WiresTask wiresTask = new WiresTask(DisplayWires.this);
         wiresTask.execute();
@@ -103,7 +103,7 @@ public class DisplayWires extends AppCompatActivity {
             buttonPrecedent = (ImageButton) findViewById(R.id.buttonPrecedentWire);
 
             BackgroundTask backgroundTask = new BackgroundTask(mActivity);
-            ArrayList<Wire> wires = backgroundTask.getListWiresByIdPartNumber(idPartNumber);
+            ArrayList<Wire> wires = backgroundTask.getListWiresByIdCable(idCable);
             arrayListWires = wires;
             return wires;
         }
@@ -172,9 +172,9 @@ public class DisplayWires extends AppCompatActivity {
     public void startDoneActivity() {
         Intent intent = new Intent(DisplayWires.this, DisplaySucces.class);
         intent.putExtra("idFamily", idFamily);
-        intent.putExtra("idPartNumber", idPartNumber);
+        intent.putExtra("idCable", idCable);
         intent.putExtra("titleFamily", titleFamily);
-        intent.putExtra("titlePartNumber", titlePartNumber);
+        intent.putExtra("titleCable", titleCable);
         intent.putExtra("totalWire", positionHuman);
         intent.putExtra("totalConnector", totalConnector);
         startActivity(intent);
@@ -234,11 +234,11 @@ public class DisplayWires extends AppCompatActivity {
 
     public void showTitle() {
         textViewTitleFamily.setText("Nom de famille : " + titleFamily);
-        textViewTitlePartNumber.setText("Nom de référence : " + titlePartNumber);
+        textViewTitleCable.setText("Nom de référence : " + titleCable);
     }
 
-    public void setTextViewTitlePartNumber(TextView textViewTitlePartNumber) {
-        this.textViewTitlePartNumber = textViewTitlePartNumber;
+    public void setTextViewTitleCable(TextView textViewTitleCable) {
+        this.textViewTitleCable = textViewTitleCable;
     }
 
     public void showValues() {

@@ -1,4 +1,4 @@
-package com.example.user.myapplication2;
+package com.example.user.LearBIP;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -64,7 +64,7 @@ public class DisplayFamilys extends AppCompatActivity {
         int idFamily = Integer.parseInt(v.getTag().toString());
         TextView namePassByUserTextView = (TextView) findViewById(R.id.namePassByUser);
         String titleFamily = namePassByUserTextView.getText().toString();
-        Intent intent = new Intent(DisplayFamilys.this, DisplayPartNumbers.class);
+        Intent intent = new Intent(DisplayFamilys.this, DisplayCables.class);
         intent.putExtra("idFamily", idFamily);
         intent.putExtra("titleFamily", titleFamily);
         startActivity(intent);

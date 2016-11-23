@@ -1,4 +1,4 @@
-package com.example.user.myapplication2;
+package com.example.user.LearBIP;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,15 +12,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.user.Model.PartNumber;
+import com.example.user.Model.Cable;
 
 import java.util.ArrayList;
 
-public class DisplayPartNumbers extends AppCompatActivity {
+public class DisplayCables extends AppCompatActivity {
 
     static int idFamily;
     static String titleFamily;
-    RecyclerView recyclerViewPartNumbers;
+    RecyclerView recyclerViewCables;
     RecyclerView.LayoutManager layoutManager;
     TextView textViewTitleFamily;
 
@@ -31,27 +31,27 @@ public class DisplayPartNumbers extends AppCompatActivity {
         idFamily = getIntent().getExtras().getInt("idFamily");
         titleFamily = getIntent().getExtras().getString("titleFamily");
 
-        setContentView(R.layout.activity_display_part_numbers);
+        setContentView(R.layout.activity_display_cables);
 
-        recyclerViewPartNumbers = (RecyclerView) findViewById(R.id.recyclerViewPartNumbers);
+        recyclerViewCables = (RecyclerView) findViewById(R.id.recyclerViewCables);
         layoutManager = new LinearLayoutManager(this);
-        recyclerViewPartNumbers.setLayoutManager(layoutManager);
-        recyclerViewPartNumbers.setHasFixedSize(true);
+        recyclerViewCables.setLayoutManager(layoutManager);
+        recyclerViewCables.setHasFixedSize(true);
 
-        PartNumbersTask partNumbersTask = new PartNumbersTask(DisplayPartNumbers.this);
-        partNumbersTask.execute();
+        CablesTask cablesTask = new CablesTask(DisplayCables.this);
+        cablesTask.execute();
 
     }
 
-    public void getIdPartNumber(View v) {
+    public void getIdCable(View v) {
 
-        int idPartNumber = Integer.parseInt(v.getTag().toString());
+        int idCable = Integer.parseInt(v.getTag().toString());
         TextView nameUsedInLearTextView = (TextView) findViewById(R.id.nameUsedInLear);
-        String titlePartNumber = nameUsedInLearTextView.getText().toString();
-        Intent intent = new Intent(DisplayPartNumbers.this, DisplayFixtures.class);
-        intent.putExtra("idPartNumber", idPartNumber);
+        String titleCable = nameUsedInLearTextView.getText().toString();
+        Intent intent = new Intent(DisplayCables.this, DisplayConnectors.class);
+        intent.putExtra("idCable", idCable);
         intent.putExtra("titleFamily", titleFamily);
-        intent.putExtra("titlePartNumber", titlePartNumber);
+        intent.putExtra("titleCable", titleCable);
         intent.putExtra("idFamily", idFamily);
         startActivity(intent);
     }
@@ -61,16 +61,16 @@ public class DisplayPartNumbers extends AppCompatActivity {
     }
 
 
-    class PartNumbersTask extends AsyncTask<Context, Void, ArrayList<PartNumber>> {
+    class CablesTask extends AsyncTask<Context, Void, ArrayList<Cable>> {
 
         Context ApplicationContext;
         Activity mActivity;
         ProgressDialog progressDialog;
-        RecyclerView recyclerViewPartNumbers;
+        RecyclerView recyclerViewCables;
 
-        public PartNumbersTask(DisplayPartNumbers displayPartNumbersByIdFamily) {
+        public CablesTask(DisplayCables displayCablesByIdFamily) {
             super();
-            mActivity = displayPartNumbersByIdFamily;
+            mActivity = displayCablesByIdFamily;
         }
 
         @Override
@@ -82,11 +82,11 @@ public class DisplayPartNumbers extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<PartNumber> result) {
+        protected void onPostExecute(ArrayList<Cable> result) {
             showTitle();
-            recyclerViewPartNumbers = (RecyclerView) mActivity.findViewById(R.id.recyclerViewPartNumbers);
-            RecyclerView.Adapter adapter = new RecyclerAdapterPartNumber(result);
-            recyclerViewPartNumbers.setAdapter(adapter);
+            recyclerViewCables = (RecyclerView) mActivity.findViewById(R.id.recyclerViewCables);
+            RecyclerView.Adapter adapter = new RecyclerAdapterCable(result);
+            recyclerViewCables.setAdapter(adapter);
             if (progressDialog != null) {
                 progressDialog.dismiss();
             }
@@ -94,11 +94,11 @@ public class DisplayPartNumbers extends AppCompatActivity {
         }
 
         @Override
-        protected ArrayList<PartNumber> doInBackground(Context... params) {
+        protected ArrayList<Cable> doInBackground(Context... params) {
             textViewTitleFamily = (TextView) findViewById(R.id.titleFamily);
             BackgroundTask backgroundTask = new BackgroundTask(mActivity);
-            ArrayList<PartNumber> partNumbers = backgroundTask.getListPartNumbersByIdFamily(DisplayPartNumbers.idFamily);
-            return partNumbers;
+            ArrayList<Cable> cables = backgroundTask.getListCablesByIdFamily(DisplayCables.idFamily);
+            return cables;
         }
 
         @Override

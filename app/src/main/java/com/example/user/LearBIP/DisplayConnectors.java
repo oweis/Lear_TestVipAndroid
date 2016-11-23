@@ -1,4 +1,4 @@
-package com.example.user.myapplication2;
+package com.example.user.LearBIP;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,22 +12,22 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.user.Model.Fixture;
+import com.example.user.Model.Connector;
 
 import java.util.ArrayList;
 
-public class DisplayFixtures extends AppCompatActivity {
+public class DisplayConnectors extends AppCompatActivity {
 
-    Fixture fixture;
-    ArrayList<Fixture> arrayListFixtures = new ArrayList<>();
-    int idPartNumber, idFamily;
+    Connector connector;
+    ArrayList<Connector> arrayListConnectors = new ArrayList<>();
+    int idCable, idFamily;
     int position = 0;
     int positionHuman;
 
-    TextView nameFixture;
-    TextView textViewTitleFamily, textViewTitlePartNumber, textViewStep;
+    TextView nameConnector;
+    TextView textViewTitleFamily, textViewTitleCable, textViewStep;
     String step;
-    String titleFamily, titlePartNumber;
+    String titleFamily, titleCable;
     ImageButton buttonNext, buttonPrecedent;
 
 
@@ -36,26 +36,26 @@ public class DisplayFixtures extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_connector);
 
-        idPartNumber = getIntent().getExtras().getInt("idPartNumber");
+        idCable = getIntent().getExtras().getInt("idCable");
         idFamily = getIntent().getExtras().getInt("idFamily");
         titleFamily = getIntent().getExtras().getString("titleFamily");
-        titlePartNumber = getIntent().getExtras().getString("titlePartNumber");
+        titleCable = getIntent().getExtras().getString("titleCable");
 
 
-        FixturesTask fixtureTask = new FixturesTask(DisplayFixtures.this);
+        ConnectorsTask fixtureTask = new ConnectorsTask(DisplayConnectors.this);
         fixtureTask.execute();
 
     }
 
-    class FixturesTask extends AsyncTask<Context, Void, ArrayList<Fixture>> {
+    class ConnectorsTask extends AsyncTask<Context, Void, ArrayList<Connector>> {
 
         Context ApplicationContext;
             Activity mActivity;
         ProgressDialog progressDialog;
 
-        public FixturesTask(DisplayFixtures displayFixtures) {
+        public ConnectorsTask(DisplayConnectors displayConnectors) {
             super();
-            mActivity = displayFixtures;
+            mActivity = displayConnectors;
 
         }
 
@@ -68,7 +68,7 @@ public class DisplayFixtures extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Fixture> result) {
+        protected void onPostExecute(ArrayList<Connector> result) {
             showTitle();
             buttonPrecedent.setClickable(false);
             buttonPrecedent.setVisibility(View.INVISIBLE);
@@ -80,21 +80,21 @@ public class DisplayFixtures extends AppCompatActivity {
         }
 
         @Override
-        protected ArrayList<Fixture> doInBackground(Context... params) {
+        protected ArrayList<Connector> doInBackground(Context... params) {
             textViewTitleFamily = (TextView) findViewById(R.id.titleFamily);
-            textViewTitlePartNumber = (TextView) findViewById(R.id.titlePartNumber);
+            textViewTitleCable = (TextView) findViewById(R.id.titleCable);
 
-            nameFixture = (TextView) findViewById(R.id.nameFixture);
+            nameConnector = (TextView) findViewById(R.id.nameConnector);
 
             textViewStep = (TextView) findViewById(R.id.textViewStep);
 
-            buttonNext = (ImageButton) findViewById(R.id.buttonNextFixture);
-            buttonPrecedent = (ImageButton) findViewById(R.id.buttonPrecedentFixture);
+            buttonNext = (ImageButton) findViewById(R.id.buttonNextConnector);
+            buttonPrecedent = (ImageButton) findViewById(R.id.buttonPrecedentConnector);
 
             BackgroundTask backgroundTask = new BackgroundTask(mActivity);
-            ArrayList<Fixture> fixtures = backgroundTask.getListFixturesByIdPartNumber(idPartNumber);
-            arrayListFixtures = fixtures;
-            return fixtures;
+            ArrayList<Connector> connectors = backgroundTask.getListConnectorByIdCable(idCable);
+            arrayListConnectors = connectors;
+            return connectors;
         }
 
         @Override
@@ -104,14 +104,14 @@ public class DisplayFixtures extends AppCompatActivity {
 
     public void setStep() {
          positionHuman = position + 1;
-        step = positionHuman + "/" + arrayListFixtures.size();
+        step = positionHuman + "/" + arrayListConnectors.size();
         textViewStep.setText(step);
     }
 
-    public void showNextFixture(View view) {
+    public void showNextConnector(View view) {
         if (assertListExist()) {
             if (!assertMaxPosition()) {
-                fixture = getFixtureInPosition(position);
+                connector = getConnectorInPosition(position);
                 showValues();
                 setStep();
                 position++;
@@ -122,11 +122,11 @@ public class DisplayFixtures extends AppCompatActivity {
         }
     }
 
-    public void showPrecedentFixture(View view) {
+    public void showPrecedentConnector(View view) {
         if (assertListExist()) {
             if (!assertMinPosition()) {
                 position--;
-                fixture = getFixtureInPosition(position);
+                connector = getConnectorInPosition(position);
                 showValues();
                 setStep();
                 setButtonVisibility();
@@ -138,12 +138,12 @@ public class DisplayFixtures extends AppCompatActivity {
     }
 
     public void startWiresActivity() {
-     //   int totalConnector = arrayListFixtures.size();
-        Intent intent = new Intent(DisplayFixtures.this, DisplayWires.class);
+     //   int totalConnector = arrayListConnectors.size();
+        Intent intent = new Intent(DisplayConnectors.this, DisplayWires.class);
         intent.putExtra("idFamily", idFamily);
-        intent.putExtra("idPartNumber", idPartNumber);
+        intent.putExtra("idCable", idCable);
         intent.putExtra("titleFamily", titleFamily);
-        intent.putExtra("titlePartNumber", titlePartNumber);
+        intent.putExtra("titleCable", titleCable);
         intent.putExtra("totalConnector", positionHuman);
         startActivity(intent);
     }
@@ -182,21 +182,21 @@ public class DisplayFixtures extends AppCompatActivity {
 
     public boolean assertMaxPosition() {
 
-        return position >= arrayListFixtures.size();
+        return position >= arrayListConnectors.size();
     }
 
     public boolean assertMinPosition() {
         return position == 0;
     }
 
-    public Fixture getFixtureInPosition(int position) {
+    public Connector getConnectorInPosition(int position) {
 
-        return arrayListFixtures.get(position);
+        return arrayListConnectors.get(position);
     }
 
 
     public boolean assertListExist() {
-        return arrayListFixtures.size() != 0 && arrayListFixtures != null;
+        return arrayListConnectors.size() != 0 && arrayListConnectors != null;
     }
 
     public void showValues() {
@@ -205,11 +205,11 @@ public class DisplayFixtures extends AppCompatActivity {
 
     public void showTitle() {
         textViewTitleFamily.setText("Nom de famille : " + titleFamily);
-        textViewTitlePartNumber.setText("Nom de référence : " +titlePartNumber);
+        textViewTitleCable.setText("Nom de référence : " + titleCable);
     }
 
     public void showNameFixture() {
-        nameFixture.setText(fixture.getNameFixture());
+        nameConnector.setText(connector.getNameConnector());
     }
 
 }
