@@ -16,11 +16,11 @@
     <string name="nameUsedInClientFamily">Nom de famille utilisé par l\'entreprise cliente : </string>
     <string name="date">Date : </string>
     <string name="client">Client : </string>
-    <string name="buttonShowPartNumber">Afficher les références</string>
+    <string name="buttonShowCable">Afficher les références</string>
 
     <!-- Activity Part Number -->
-    <string name="nameUsedInLearPartNumber">Nom de référence utilisé par LEAR : </string>
-    <string name="nameUsedInClientPartNumber">Nom de référence utilisé par l\'entreprise cliente : </string>
+    <string name="nameUsedInLearCable">Nom de référence utilisé par LEAR : </string>
+    <string name="nameUsedInClientCable">Nom de référence utilisé par l\'entreprise cliente : </string>
     <string name="level">Niveau : </string>
     <string name="buttonStartTest">Lancer test BIP</string>
 
@@ -44,8 +44,8 @@
 
     <!-- Activity Success -->
     <string name="nameFamily">Nom de famille : </string>
-    <string name="namePartNumber">Nom de référence : </string>
-    <string name="numberPartNumber">Nombre des connecteurs : </string>
+    <string name="nameCable">Nom de référence : </string>
+    <string name="numberCable">Nombre des connecteurs : </string>
     <string name="numberWire">Nombre des fils : </string>
     <string name="buttonRestart">Refaire le test</string>
     <string name="buttonReturn">Retour a la même famille</string>

@@ -4,13 +4,18 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.Model.Family;
 
@@ -59,6 +64,60 @@ public class DisplayFamilys extends AppCompatActivity {
 
     }
 
+    public void showLastTest(View v){
+        //TODO Replace code with real one to open Activity wanted
+        //TODO try to redesign app desktop
+        displayData();
+        redirectToLastTest();
+    }
+    public void redirectToLastTest(){
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        String phase = sharedPreferences.getString("phase","");
+        boolean hasData = sharedPreferences.getBoolean("hasData",false);
+
+        int idFamily = sharedPreferences.getInt("idFamily",0);
+        int idCable = sharedPreferences.getInt("idCable",0);
+        if(hasData){
+            Intent intent;
+            if(phase.equals("connector")){
+                 intent = new Intent(DisplayFamilys.this, DisplayConnectors.class);
+            }
+            else {
+                intent = new Intent(DisplayFamilys.this, DisplayWires.class);
+
+            }
+
+            intent.putExtra("idFamily", idFamily);
+            intent.putExtra("idCable",idCable);
+            intent.putExtra("titleFamily", "Family");
+            intent.putExtra("titleCable","Cable");
+            startActivity(intent);
+        }
+    }
+
+    public void displayData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        String phase = sharedPreferences.getString("phase","");
+        int position = sharedPreferences.getInt("position",0);
+        int idCable = sharedPreferences.getInt("idCable",0);
+        int idFamily = sharedPreferences.getInt("idFamily",0);
+        String msg = "Les informations de votre dernier test :" +"\nPhase : "+phase +"\nPosition : "+position+"\nIdCable : "+idCable+"\nIdFamily : "+idFamily;
+        Toast.makeText(this.getApplicationContext(), msg,Toast.LENGTH_LONG).show();
+    }
+
+    public void setButtonContinue(){
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        boolean hasData = sharedPreferences.getBoolean("hasData",true);
+        ImageButton continueButton = (ImageButton) findViewById(R.id.buttonContinue);
+        if(!hasData) {
+            continueButton.setVisibility(View.GONE);
+        }
+        else{
+            continueButton.setVisibility(View.VISIBLE);
+        }
+    }
+
+
     public void sendIdFamily(View v) {
 
         int idFamily = Integer.parseInt(v.getTag().toString());
@@ -70,6 +129,7 @@ public class DisplayFamilys extends AppCompatActivity {
         startActivity(intent);
 
     }
+
 
 
     class FamilysTask extends AsyncTask<Context, Void, ArrayList<Family>> {
@@ -108,6 +168,8 @@ public class DisplayFamilys extends AppCompatActivity {
             if (progressDialog != null) {
                 progressDialog.dismiss();
             }
+
+            setButtonContinue();
         }
 
         @Override
@@ -121,4 +183,5 @@ public class DisplayFamilys extends AppCompatActivity {
         protected void onProgressUpdate(Void... values) {
         }
     }
+
 }

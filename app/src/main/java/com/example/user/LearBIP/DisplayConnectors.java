@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.Model.Connector;
 
@@ -41,10 +43,47 @@ public class DisplayConnectors extends AppCompatActivity {
         titleFamily = getIntent().getExtras().getString("titleFamily");
         titleCable = getIntent().getExtras().getString("titleCable");
 
-
+        if(titleFamily.equals("Family")){openLastTest();}
         ConnectorsTask fixtureTask = new ConnectorsTask(DisplayConnectors.this);
         fixtureTask.execute();
 
+    }
+
+    public void openLastTest() {
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        String phase = sharedPreferences.getString("phase", "");
+        boolean hasData = sharedPreferences.getBoolean("hasData", false);
+        if (hasData) {
+            if (phase.equals("connector")) {
+                position = sharedPreferences.getInt("position", 0);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        saveData();
+        super.onBackPressed();
+    }
+
+    public void saveData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if(!isTheSameCable(idCable)) {
+            editor.putBoolean("hasData", true);
+            editor.putString("phase", "connector");
+            editor.putInt("position", position);
+            editor.putInt("idCable", idCable);
+            editor.putInt("idFamily", idFamily);
+            editor.apply();
+        }
+    }
+
+    public boolean isTheSameCable(int newIdCable){
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        int idCable = sharedPreferences.getInt("idCable",0);
+        String phase = sharedPreferences.getString("phase","");
+        return idCable == newIdCable && phase.equals("wire") ;
     }
 
     class ConnectorsTask extends AsyncTask<Context, Void, ArrayList<Connector>> {

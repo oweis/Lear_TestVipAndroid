@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- All Activity -->
+    <string name="titlePartNumber">Nombre del cable : </string>
+    <string name="titleFamily">Nombre de la familia :</string>
+    <string name="name">Nombre : </string>
+    <string name="color">Color : </string>
+    <string name="date">Fecha : </string>
+
+    <!-- Activity Family -->
+    <string name="namePassByUserFamily">Nombre elegido por usuar : </string>
+    <string name="nameUsedInLearFamily">Nombre elegido por LEAR  : </string>
+    <string name="nameUsedInClientFamily">Nombre elegido por cliente de la compania : </string>
+    <string name="client">Cliente : </string>
+    <string name="buttonShowCable">Mostrar Cables</string>
+
+    <!-- Activity Cable -->
+    <string name="nameUsedInLearCable">Nombre usado por LEAR : </string>
+    <string name="nameUsedInClientCable">Nombre usado por cliente : </string>
+    <string name="level">Nivel : </string>
+    <string name="buttonStartTest">Comienza test BIP</string>
+
+    <!-- Activity Connector -->
+    <string name="nameConnector">Nombre del conector </string>
+    <string name="stepConnector">Numero del conector / Numero de </string>
+
+    <!-- Activity Wire -->
+    <string name="nameWire">nombre</string>
+    <string name="colorWire">color</string>
+    <string name="connector_A">Conector A</string>
+    <string name="connector_B">Conector B</string>
+    <string name="pin_A">Pin A</string>
+    <string name="pin_B">Pin B</string>
+    <string name="color_A">Color A</string>
+    <string name="color_B">Color B</string>
+    <string name="stepWire">Numero del alambre / Numeros de los alambres</string>
+
+
+    <!-- Activity Success -->
+    <string name="nameFamily">Nombre de la familia : </string>
+    <string name="nameCable">Nombre del cable : </string>
+    <string name="numberCable">Numero de los conectores : </string>
+    <string name="numberWire">Numero de los alambres : </string>
+    <string name="buttonRestart">Reiniciar el test</string>
+    <string name="buttonReturn">Volver a la misma familia</string>
+    <string name="buttonHome">Casa</string>
+    <string name="toast_crash">Algo salió mal</string>
+
+</resources>

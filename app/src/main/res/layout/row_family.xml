@@ -80,6 +80,6 @@
         android:onClick="sendIdFamily"
         android:tag="0"
         android:drawableLeft="@drawable/button_family"
-        android:text="@string/buttonShowPartNumber" />
+        android:text="@string/buttonShowCable" />
 
 </LinearLayout>

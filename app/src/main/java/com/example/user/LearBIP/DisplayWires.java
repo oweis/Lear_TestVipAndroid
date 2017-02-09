@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.Design.Color;
 import com.example.user.Model.Wire;
@@ -32,6 +34,30 @@ public class DisplayWires extends AppCompatActivity {
     int positionHuman;
 
     @Override
+    public void onBackPressed() {
+        saveData();
+        super.onBackPressed();
+    }
+
+    public void freeData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("hasData",false);
+        editor.apply();
+    }
+
+    public void saveData(){
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("hasData",true);
+        editor.putString("phase","wire");
+        editor.putInt("position",position);
+        editor.putInt("idCable",idCable);
+        editor.putInt("idFamily",idFamily);
+        editor.apply();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_wires);
@@ -44,10 +70,22 @@ public class DisplayWires extends AppCompatActivity {
 
         textViewTitleFamily = (TextView) findViewById(R.id.titleFamily);
         textViewTitleCable = (TextView) findViewById(R.id.titleCable);
-
+        if(titleFamily.equals("Family")){openLastTest();}
         WiresTask wiresTask = new WiresTask(DisplayWires.this);
         wiresTask.execute();
 
+    }
+
+
+    public void openLastTest() {
+        SharedPreferences sharedPreferences = getSharedPreferences("infos", Context.MODE_PRIVATE);
+        String phase = sharedPreferences.getString("phase", "");
+        boolean hasData = sharedPreferences.getBoolean("hasData", false);
+        if (hasData) {
+            if (phase.equals("connector")) {
+                position = sharedPreferences.getInt("position", 0);
+            }
+        }
     }
 
     class WiresTask extends AsyncTask<Context, Void, ArrayList<Wire>> {
@@ -170,6 +208,7 @@ public class DisplayWires extends AppCompatActivity {
     }
 
     public void startDoneActivity() {
+        freeData();
         Intent intent = new Intent(DisplayWires.this, DisplaySucces.class);
         intent.putExtra("idFamily", idFamily);
         intent.putExtra("idCable", idCable);

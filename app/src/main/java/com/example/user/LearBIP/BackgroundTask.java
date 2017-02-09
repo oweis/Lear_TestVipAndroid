@@ -32,7 +32,7 @@ public class BackgroundTask {
     ArrayList<Wire> arrayListWire = new ArrayList<>();
     ArrayList<Connector> arrayListConnector = new ArrayList<>();
 
-     String json_root_url = "http://192.168.5.1:8080/Lear_API/webapi/";
+     String json_root_url = "http://192.168.5.1:8081/Lear_API/webapi/";
     //String json_root_url = "http://10.0.2.2:8080/Lear_API/webapi/";
 
 

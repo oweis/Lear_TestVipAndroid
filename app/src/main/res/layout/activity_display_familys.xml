@@ -18,6 +18,21 @@
         android:elevation="3dp"
         />
 
+    <ImageButton
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/cliquez"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentTop="false"
+        android:id="@+id/buttonContinue"
+        android:adjustViewBounds="true"
+        android:onClick="showLastTest"
+        android:layout_margin="10dp"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

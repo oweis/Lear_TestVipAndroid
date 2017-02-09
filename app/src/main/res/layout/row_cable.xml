@@ -15,7 +15,7 @@
         android:padding="2dp"
         android:gravity="right"
         android:paddingRight="10dp"
-        android:text="@string/nameUsedInLearPartNumber"
+        android:text="@string/nameUsedInLearCable"
         android:textColor="#2980B9" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameUsedInLear"
         android:padding="2dp"
-        android:text="@string/nameUsedInClientPartNumber"
+        android:text="@string/nameUsedInClientCable"
         android:textColor="#ffffff" />
 
     <TextView
